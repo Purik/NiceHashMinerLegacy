@@ -33,6 +33,7 @@
             this.textUsername = new System.Windows.Forms.TextBox();
             this.textPassword = new System.Windows.Forms.TextBox();
             this.labelPassword = new System.Windows.Forms.Label();
+            this.buttonAuth = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textInfo
@@ -69,6 +70,7 @@
             // 
             this.textPassword.Location = new System.Drawing.Point(128, 129);
             this.textPassword.Name = "textPassword";
+            this.textPassword.PasswordChar = '*';
             this.textPassword.Size = new System.Drawing.Size(166, 20);
             this.textPassword.TabIndex = 3;
             // 
@@ -81,11 +83,22 @@
             this.labelPassword.TabIndex = 4;
             this.labelPassword.Text = "Пароль";
             // 
+            // buttonAuth
+            // 
+            this.buttonAuth.Location = new System.Drawing.Point(154, 172);
+            this.buttonAuth.Name = "buttonAuth";
+            this.buttonAuth.Size = new System.Drawing.Size(106, 23);
+            this.buttonAuth.TabIndex = 5;
+            this.buttonAuth.Text = "Авторизоваться";
+            this.buttonAuth.UseVisualStyleBackColor = true;
+            this.buttonAuth.Click += new System.EventHandler(this.buttonAuth_Click);
+            // 
             // Form_Authorization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 231);
+            this.Controls.Add(this.buttonAuth);
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.textPassword);
             this.Controls.Add(this.textUsername);
@@ -107,5 +120,6 @@
         private System.Windows.Forms.TextBox textUsername;
         private System.Windows.Forms.TextBox textPassword;
         private System.Windows.Forms.Label labelPassword;
+        private System.Windows.Forms.Button buttonAuth;
     }
 }

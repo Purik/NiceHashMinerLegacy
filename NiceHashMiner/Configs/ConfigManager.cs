@@ -9,6 +9,7 @@ namespace NiceHashMiner.Configs
     {
         private const string Tag = "ConfigManager";
         public static GeneralConfig GeneralConfig = new GeneralConfig();
+        public static SecretConfig SecretConfig = new SecretConfig();
 
         // helper variables
         private static bool _isGeneralConfigFileInit;

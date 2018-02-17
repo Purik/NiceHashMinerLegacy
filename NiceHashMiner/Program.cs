@@ -110,6 +110,7 @@ namespace NiceHashMiner
                     Application.Run(new Form_ChooseLanguage());
                 }
 
+                
                 // Init languages
                 International.Initialize(ConfigManager.GeneralConfig.Language);
 
@@ -120,19 +121,32 @@ namespace NiceHashMiner
                     ConfigManager.GeneralConfig.Language = commandLineArgs.LangValue;
                 }
 
-                // check WMI
-                if (Helpers.IsWmiEnabled())
+                if (!WebAPI.IsAuthorized())
                 {
-                    if (ConfigManager.GeneralConfig.agreedWithTOS == Globals.CurrentTosVer)
+                    Application.Run(new Form_Authorization());
+                }
+
+                // check WMI
+                if (WebAPI.IsAuthorized())
+                {
+                    if (Helpers.IsWmiEnabled())
                     {
-                        Application.Run(new Form_Main());
+                        if (ConfigManager.GeneralConfig.agreedWithTOS == Globals.CurrentTosVer)
+                        {
+                            Application.Run(new Form_Main());
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(International.GetText("Program_WMI_Error_Text"),
+                            International.GetText("Program_WMI_Error_Title"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show(International.GetText("Program_WMI_Error_Text"),
-                        International.GetText("Program_WMI_Error_Title"),
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Вы должны сначала авторизоваться в системе!", "Ошибка",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

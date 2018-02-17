@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 
 namespace NiceHashMiner.Configs.Data
 {
-    class SecretConfig
+    public class SecretConfig
     {
         private readonly string SecretsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), typeof(SecretConfig).FullName);
 
