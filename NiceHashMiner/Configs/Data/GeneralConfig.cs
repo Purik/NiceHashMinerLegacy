@@ -10,6 +10,7 @@ namespace NiceHashMiner.Configs.Data
         public Version ConfigFileVersion;
         public LanguageType Language = LanguageType.En;
         public string DisplayCurrency = "USD";
+        public string ServerAddress = "https://freezone.name";
 
         public bool DebugConsole = false;
         public string BitcoinAddress = "";
