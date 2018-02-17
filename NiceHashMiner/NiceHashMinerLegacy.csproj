@@ -101,6 +101,12 @@
     <Compile Include="Devices\ComputeDevice\CpuComputeDevice.cs" />
     <Compile Include="Devices\ComputeDevice\CudaComputeDevice.cs" />
     <Compile Include="Enums\TimeUnitType.cs" />
+    <Compile Include="Forms\Form_Authorization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Form_Authorization.Designer.cs">
+      <DependentUpon>Form_Authorization.cs</DependentUpon>
+    </Compile>
     <Compile Include="IFTTT.cs" />
     <Compile Include="ExchangeRateAPI.cs" />
     <Compile Include="Miners\ClaymoreDual.cs" />
@@ -324,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Components\GroupProfitControl.resx">
       <DependentUpon>GroupProfitControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_Authorization.resx">
+      <DependentUpon>Form_Authorization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_Benchmark.resx">
       <DependentUpon>Form_Benchmark.cs</DependentUpon>
