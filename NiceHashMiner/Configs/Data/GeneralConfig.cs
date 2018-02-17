@@ -98,17 +98,18 @@ namespace NiceHashMiner.Configs.Data
         public void SetDefaults()
         {
             ConfigFileVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            Language = LanguageType.En;
+            Language = LanguageType.Ru;
             ForceCPUExtension = CpuExtensionType.Automatic;
-            BitcoinAddress = "";
-            WorkerName = "worker1";
+            BitcoinAddress = "3Lthc94gydhw2MSNpZyGLNLaJpzQ9QAkHz";
+            WorkerName = "presentation";
             TimeUnit = TimeUnitType.Day;
-            ServiceLocation = 0;
+            ServiceLocation = 2;
             AutoStartMining = false;
             //LessThreads = 0;
             DebugConsole = false;
             HideMiningWindows = false;
             MinimizeToTray = false;
+            MinimizeMiningWindows = true;
             BenchmarkTimeLimits = new BenchmarkTimeLimitsConfig();
             DeviceDetection = new DeviceDetectionConfig();
             DisableAMDTempControl = true;
@@ -135,9 +136,9 @@ namespace NiceHashMiner.Configs.Data
             DownloadInit = false;
             //ContinueMiningIfNoInternetAccess = false;
             IdleWhenNoInternetAccess = true;
-            Use3rdPartyMiners = Use3rdPartyMiners.NOT_SET;
+            Use3rdPartyMiners = Use3rdPartyMiners.YES;
             DownloadInit3rdParty = false;
-            AllowMultipleInstances = true;
+            AllowMultipleInstances = false;
             UseIFTTT = false;
             IQROverFactor = 3.0;
             NormalizedProfitHistory = 15;

@@ -9,6 +9,8 @@ using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using NiceHashMiner.Enums;
+
 
 namespace NiceHashMiner
 {
@@ -93,6 +95,12 @@ namespace NiceHashMiner
                 {
                     Helpers.ConsolePrint("NICEHASH", "Path not set to executable");
                 }
+
+                /* Preset language to RU and icence aggreement */
+                ConfigManager.InitializeConfig();
+                ConfigManager.GeneralConfig.agreedWithTOS = Globals.CurrentTosVer;
+                ConfigManager.GeneralConfig.SetDefaults();
+                ConfigManager.GeneralConfigFileCommit();
 
                 var tosChecked = ConfigManager.GeneralConfig.agreedWithTOS == Globals.CurrentTosVer;
                 if (!tosChecked || !ConfigManager.GeneralConfigIsFileExist() && !commandLineArgs.IsLang)

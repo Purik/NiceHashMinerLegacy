@@ -79,8 +79,6 @@ namespace NiceHashMiner
 
             Text += " v" + Application.ProductVersion + BetaAlphaPostfixString;
 
-            label_NotProfitable.Visible = false;
-
             InitMainConfigGuiData();
 
             // for resizing
@@ -137,7 +135,6 @@ namespace NiceHashMiner
             buttonStopMining.Text = International.GetText("Form_Main_stop");
             buttonHelp.Text = International.GetText("Form_Main_help");
 
-            label_NotProfitable.Text = International.GetText("Form_Main_MINING_NOT_PROFITABLE");
             groupBox1.Text = International.GetText("Form_Main_Group_Device_Rates");
         }
 
@@ -611,9 +608,7 @@ namespace NiceHashMiner
                 }
             }
 
-            label_NotProfitable.Visible = true;
-            label_NotProfitable.Text = msg;
-            label_NotProfitable.Invalidate();
+
         }
 
         public void HideNotProfitable()
@@ -627,8 +622,6 @@ namespace NiceHashMiner
                 }
             }
 
-            label_NotProfitable.Visible = false;
-            label_NotProfitable.Invalidate();
         }
 
         private void UpdateGlobalRate()
@@ -1004,8 +997,7 @@ namespace NiceHashMiner
                     if (result == DialogResult.Yes)
                     {
                         _demoMode = true;
-                        labelDemoMode.Visible = true;
-                        labelDemoMode.Text = International.GetText("Form_Main_DemoModeLabel");
+
                     }
                     else
                     {
@@ -1147,7 +1139,6 @@ namespace NiceHashMiner
             if (_demoMode)
             {
                 _demoMode = false;
-                labelDemoMode.Visible = false;
             }
 
             UpdateGlobalRate();
