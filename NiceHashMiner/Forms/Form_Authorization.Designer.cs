@@ -34,6 +34,7 @@
             this.textPassword = new System.Windows.Forms.TextBox();
             this.labelPassword = new System.Windows.Forms.Label();
             this.buttonAuth = new System.Windows.Forms.Button();
+            this.linkRecoveryLink = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // textInfo
@@ -85,7 +86,7 @@
             // 
             // buttonAuth
             // 
-            this.buttonAuth.Location = new System.Drawing.Point(154, 172);
+            this.buttonAuth.Location = new System.Drawing.Point(153, 183);
             this.buttonAuth.Name = "buttonAuth";
             this.buttonAuth.Size = new System.Drawing.Size(106, 23);
             this.buttonAuth.TabIndex = 5;
@@ -93,11 +94,25 @@
             this.buttonAuth.UseVisualStyleBackColor = true;
             this.buttonAuth.Click += new System.EventHandler(this.buttonAuth_Click);
             // 
+            // linkRecoveryLink
+            // 
+            this.linkRecoveryLink.AutoSize = true;
+            this.linkRecoveryLink.LinkColor = System.Drawing.Color.Red;
+            this.linkRecoveryLink.Location = new System.Drawing.Point(37, 160);
+            this.linkRecoveryLink.Name = "linkRecoveryLink";
+            this.linkRecoveryLink.Size = new System.Drawing.Size(398, 13);
+            this.linkRecoveryLink.TabIndex = 6;
+            this.linkRecoveryLink.TabStop = true;
+            this.linkRecoveryLink.Text = "Ошибка авторизации. Вы можете восстановить аккаунт, перейдя по ссылке";
+            this.linkRecoveryLink.Visible = false;
+            this.linkRecoveryLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkRecoveryLink_LinkClicked);
+            // 
             // Form_Authorization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 231);
+            this.ClientSize = new System.Drawing.Size(447, 237);
+            this.Controls.Add(this.linkRecoveryLink);
             this.Controls.Add(this.buttonAuth);
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.textPassword);
@@ -108,6 +123,8 @@
             this.Name = "Form_Authorization";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Авторизация в системе";
+            this.Activated += new System.EventHandler(this.Form_Authorization_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_Authorization_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,5 +138,6 @@
         private System.Windows.Forms.TextBox textPassword;
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.Button buttonAuth;
+        private System.Windows.Forms.LinkLabel linkRecoveryLink;
     }
 }

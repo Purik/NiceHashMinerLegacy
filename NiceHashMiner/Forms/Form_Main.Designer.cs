@@ -58,6 +58,9 @@
             this.buttonHelp = new System.Windows.Forms.Button();
             this.linkLabelNewVersion = new System.Windows.Forms.LinkLabel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.labelAccount = new System.Windows.Forms.Label();
+            this.linkAccount = new System.Windows.Forms.LinkLabel();
+            this.buttonLogout = new System.Windows.Forms.Button();
             this.devicesListViewEnableControl1 = new NiceHashMiner.Forms.Components.DevicesListViewEnableControl();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -66,7 +69,7 @@
             // buttonStartMining
             // 
             this.buttonStartMining.BackColor = System.Drawing.Color.Lime;
-            this.buttonStartMining.Location = new System.Drawing.Point(141, 8);
+            this.buttonStartMining.Location = new System.Drawing.Point(141, 33);
             this.buttonStartMining.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonStartMining.Name = "buttonStartMining";
             this.buttonStartMining.Size = new System.Drawing.Size(89, 23);
@@ -244,7 +247,7 @@
             // buttonStopMining
             // 
             this.buttonStopMining.Enabled = false;
-            this.buttonStopMining.Location = new System.Drawing.Point(236, 8);
+            this.buttonStopMining.Location = new System.Drawing.Point(236, 33);
             this.buttonStopMining.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonStopMining.Name = "buttonStopMining";
             this.buttonStopMining.Size = new System.Drawing.Size(89, 23);
@@ -256,7 +259,7 @@
             // buttonBenchmark
             // 
             this.buttonBenchmark.BackColor = System.Drawing.Color.Yellow;
-            this.buttonBenchmark.Location = new System.Drawing.Point(3, 8);
+            this.buttonBenchmark.Location = new System.Drawing.Point(3, 33);
             this.buttonBenchmark.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
             this.buttonBenchmark.Name = "buttonBenchmark";
             this.buttonBenchmark.Size = new System.Drawing.Size(132, 23);
@@ -268,7 +271,7 @@
             // buttonSettings
             // 
             this.buttonSettings.BackColor = System.Drawing.Color.Red;
-            this.buttonSettings.Location = new System.Drawing.Point(459, 8);
+            this.buttonSettings.Location = new System.Drawing.Point(331, 33);
             this.buttonSettings.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonSettings.Name = "buttonSettings";
             this.buttonSettings.Size = new System.Drawing.Size(89, 23);
@@ -335,17 +338,48 @@
             this.linkLabelNewVersion.TabIndex = 110;
             this.linkLabelNewVersion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelNewVersion_LinkClicked);
             // 
+            // labelAccount
+            // 
+            this.labelAccount.AutoSize = true;
+            this.labelAccount.Location = new System.Drawing.Point(12, 9);
+            this.labelAccount.Name = "labelAccount";
+            this.labelAccount.Size = new System.Drawing.Size(10, 13);
+            this.labelAccount.TabIndex = 111;
+            this.labelAccount.Text = "-";
+            // 
+            // linkAccount
+            // 
+            this.linkAccount.AutoSize = true;
+            this.linkAccount.Location = new System.Drawing.Point(412, 9);
+            this.linkAccount.Name = "linkAccount";
+            this.linkAccount.Size = new System.Drawing.Size(130, 13);
+            this.linkAccount.TabIndex = 112;
+            this.linkAccount.TabStop = true;
+            this.linkAccount.Text = "Войти в личный кабинет";
+            this.linkAccount.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkAccount_LinkClicked);
+            // 
+            // buttonLogout
+            // 
+            this.buttonLogout.Location = new System.Drawing.Point(426, 33);
+            this.buttonLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonLogout.Name = "buttonLogout";
+            this.buttonLogout.Size = new System.Drawing.Size(116, 23);
+            this.buttonLogout.TabIndex = 113;
+            this.buttonLogout.Text = "Выйти из аккаунта";
+            this.buttonLogout.UseVisualStyleBackColor = true;
+            this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
+            // 
             // devicesListViewEnableControl1
             // 
             this.devicesListViewEnableControl1.BenchmarkCalculation = null;
             this.devicesListViewEnableControl1.FirstColumnText = "Enabled";
             this.devicesListViewEnableControl1.IsInBenchmark = false;
             this.devicesListViewEnableControl1.IsMining = false;
-            this.devicesListViewEnableControl1.Location = new System.Drawing.Point(3, 38);
+            this.devicesListViewEnableControl1.Location = new System.Drawing.Point(3, 63);
             this.devicesListViewEnableControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.devicesListViewEnableControl1.Name = "devicesListViewEnableControl1";
             this.devicesListViewEnableControl1.SaveToGeneralConfig = false;
-            this.devicesListViewEnableControl1.Size = new System.Drawing.Size(545, 129);
+            this.devicesListViewEnableControl1.Size = new System.Drawing.Size(545, 104);
             this.devicesListViewEnableControl1.TabIndex = 109;
             // 
             // Form_Main
@@ -353,6 +387,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(554, 262);
+            this.Controls.Add(this.buttonLogout);
+            this.Controls.Add(this.linkAccount);
+            this.Controls.Add(this.labelAccount);
             this.Controls.Add(this.linkLabelNewVersion);
             this.Controls.Add(this.buttonHelp);
             this.Controls.Add(this.devicesListViewEnableControl1);
@@ -420,6 +457,9 @@
         private System.Windows.Forms.Button buttonHelp;
         private System.Windows.Forms.LinkLabel linkLabelNewVersion;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label labelAccount;
+        private System.Windows.Forms.LinkLabel linkAccount;
+        private System.Windows.Forms.Button buttonLogout;
     }
 }
 

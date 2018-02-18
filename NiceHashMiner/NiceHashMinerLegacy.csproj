@@ -98,6 +98,7 @@
     <Compile Include="3rdParty\NVAPI.cs" />
     <Compile Include="3rdParty\PInvokeDelegateFactory.cs" />
     <Compile Include="Algorithm.cs" />
+    <Compile Include="Configs\Data\MinerAccount.cs" />
     <Compile Include="Configs\Data\SecretConfig.cs" />
     <Compile Include="Devices\ComputeDevice\AmdComputeDevice.cs" />
     <Compile Include="Devices\ComputeDevice\CpuComputeDevice.cs" />

@@ -121,19 +121,28 @@ namespace NiceHashMiner
                     ConfigManager.GeneralConfig.Language = commandLineArgs.LangValue;
                 }
 
-                if (!WebAPI.IsAuthorized())
+                if (ConfigManager.GeneralConfig.Account == null)
                 {
                     Application.Run(new Form_Authorization());
                 }
 
                 // check WMI
-                if (WebAPI.IsAuthorized())
+                if (ConfigManager.GeneralConfig.Account != null)
                 {
                     if (Helpers.IsWmiEnabled())
                     {
                         if (ConfigManager.GeneralConfig.agreedWithTOS == Globals.CurrentTosVer)
                         {
-                            Application.Run(new Form_Main());
+                            while (true) {
+                                Application.Run(new Form_Main());
+                                if (ConfigManager.GeneralConfig.Account == null)
+                                {
+                                    Application.Run(new Form_Authorization());
+                                }
+                                else {
+                                    break;
+                                }
+                            }
                         }
                     }
                     else

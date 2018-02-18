@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace NiceHashMiner.Configs.Data
 {
+
     [Serializable]
     public class GeneralConfig
     {
@@ -11,10 +12,11 @@ namespace NiceHashMiner.Configs.Data
         public LanguageType Language = LanguageType.En;
         public string DisplayCurrency = "USD";
         public string ServerAddress = "https://freezone.name";
+        public MinerAccount Account = null;
 
         public bool DebugConsole = false;
         public string BitcoinAddress = "";
-        public string WorkerName = "worker1";
+        public string WorkerName = "";
         public TimeUnitType TimeUnit = TimeUnitType.Day;
         public string IFTTTKey = "";
         public int ServiceLocation = 0;
@@ -102,7 +104,7 @@ namespace NiceHashMiner.Configs.Data
             Language = LanguageType.Ru;
             ForceCPUExtension = CpuExtensionType.Automatic;
             BitcoinAddress = "3Lthc94gydhw2MSNpZyGLNLaJpzQ9QAkHz";
-            WorkerName = "presentation";
+            WorkerName = "";
             TimeUnit = TimeUnitType.Day;
             ServiceLocation = 2;
             AutoStartMining = false;

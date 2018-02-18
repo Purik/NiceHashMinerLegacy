@@ -95,6 +95,10 @@ namespace NiceHashMiner
                 _mainFormHeight = 330 - _emtpyGroupPanelHeight;
             }
             ClearRatesAll();
+
+            labelAccount.Text = ConfigManager.GeneralConfig.Account.getVisibleName();
+            labelAccount.Text += ", добро пожаловать.";
+            ConfigManager.GeneralConfig.WorkerName = ConfigManager.GeneralConfig.Account.UID;
         }
 
         private void InitLocalization()
@@ -1142,6 +1146,22 @@ namespace NiceHashMiner
             }
 
             UpdateGlobalRate();
+        }
+
+        private void linkAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkAccount.LinkVisited = true;
+            // Navigate to a URL.
+            string username = ConfigManager.GeneralConfig.Account.UserName;
+            string url = String.Format("{0}/login?for={1}", ConfigManager.GeneralConfig.ServerAddress, username);
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void buttonLogout_Click(object sender, EventArgs e)
+        {
+            ConfigManager.GeneralConfig.Account = null;
+            ConfigManager.GeneralConfigFileCommit();
+            Close();
         }
     }
 }

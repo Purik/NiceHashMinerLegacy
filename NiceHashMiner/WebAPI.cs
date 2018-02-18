@@ -5,36 +5,40 @@ using NiceHashMiner.Configs;
 using System.Net;
 using Newtonsoft.Json;
 using System.IO;    // for StreamReader
-
+using System.Reflection;
 
 namespace NiceHashMiner
 {
     public static class WebAPI
     {
-        public static bool IsAuthorized()
+        public class AccountAnswer
         {
-            var username = "minikspb@gmail.com";// ConfigManager.SecretConfig.Get(usernameKey);
-            var password = "vbytyreif_"; // ConfigManager.SecretConfig.Get(passwordKey);
-            if (username == null)
-            {
-                return false;
-            }
-            if (password == null)
-            {
-                return false;
-            }
+            public bool success { get; set; }
+            public string uid { get; set; }
+            public string username { get; set; }
+            public string first_name { get; set; }
+            public string last_name { get; set; }
+        }
 
+        public static AccountAnswer Account(string username, string password)
+        {
             var values = new Dictionary<string, string>
             {
                { "username", username },
                { "password", password },
-               { "machine", System.Environment.MachineName }
             };
-            CustomRequest("account", values);
-            return false;
+            var json = CustomRequest("account", values);
+            if (json != null)
+            {
+                AccountAnswer ret = JsonConvert.DeserializeObject<AccountAnswer>(json);
+                return ret;
+            }
+            else {
+                return null;
+            }
         }
 
-        private static object CustomRequest(string method, Dictionary<string, string> data)
+        private static string CustomRequest(string method, Dictionary<string, string> data)
         {
             var url = ConfigManager.GeneralConfig.ServerAddress + "/ajax/" + method;
             var postDataAsStr = String.Format("machine={0}", System.Environment.MachineName);
@@ -54,11 +58,8 @@ namespace NiceHashMiner
             }
             var response = (HttpWebResponse)request.GetResponse();
             var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            var ret = JsonConvert.DeserializeObject(responseString);
-            return ret;
+            return responseString;
         }
-
-        private static Guid usernameKey = new Guid("9D2B0228-4D0D-4C23-8B49-01A698857709");
-        private static Guid passwordKey = new Guid("9D2B0228-4D0D-4C23-8B49-01A698857701");
+        
     }
 }
