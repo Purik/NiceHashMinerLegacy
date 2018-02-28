@@ -1,5 +1,6 @@
 @echo off
 set CFG=%1
+chcp 437
 
 echo Cnfiguration: "%CFG%"
 
