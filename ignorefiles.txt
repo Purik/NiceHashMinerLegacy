@@ -1,5 +1,0 @@
-.idb
-.ilk
-.obj
-.pdb
-.vcxproj
