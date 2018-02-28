@@ -928,7 +928,7 @@ namespace NiceHashMiner
 
         private void ToolStripStatusLabel10_Click(object sender, EventArgs e)
         {
-            Process.Start(Links.NhmPayingFaq);
+            // Process.Start(Links.NhmPayingFaq);
         }
 
         private void ToolStripStatusLabel10_MouseHover(object sender, EventArgs e)
