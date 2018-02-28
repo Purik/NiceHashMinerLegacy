@@ -183,12 +183,14 @@
             this.toolStripStatusLabelBalanceBTCValue.Name = "toolStripStatusLabelBalanceBTCValue";
             this.toolStripStatusLabelBalanceBTCValue.Size = new System.Drawing.Size(73, 20);
             this.toolStripStatusLabelBalanceBTCValue.Text = "0.00000000";
+            this.toolStripStatusLabelBalanceBTCValue.Visible = false;
             // 
             // toolStripStatusLabelBalanceBTCCode
             // 
             this.toolStripStatusLabelBalanceBTCCode.Name = "toolStripStatusLabelBalanceBTCCode";
             this.toolStripStatusLabelBalanceBTCCode.Size = new System.Drawing.Size(29, 20);
             this.toolStripStatusLabelBalanceBTCCode.Text = "BTC";
+            this.toolStripStatusLabelBalanceBTCCode.Visible = false;
             // 
             // toolStripStatusLabelBalanceDollarText
             // 
@@ -196,12 +198,14 @@
             this.toolStripStatusLabelBalanceDollarText.Name = "toolStripStatusLabelBalanceDollarText";
             this.toolStripStatusLabelBalanceDollarText.Size = new System.Drawing.Size(31, 20);
             this.toolStripStatusLabelBalanceDollarText.Text = "0.00";
+            this.toolStripStatusLabelBalanceDollarText.Visible = false;
             // 
             // toolStripStatusLabelBalanceDollarValue
             // 
             this.toolStripStatusLabelBalanceDollarValue.Name = "toolStripStatusLabelBalanceDollarValue";
             this.toolStripStatusLabelBalanceDollarValue.Size = new System.Drawing.Size(16, 20);
             this.toolStripStatusLabelBalanceDollarValue.Text = "$ ";
+            this.toolStripStatusLabelBalanceDollarValue.Visible = false;
             // 
             // toolStripStatusLabel10
             // 

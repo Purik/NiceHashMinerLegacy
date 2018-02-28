@@ -13,6 +13,8 @@ namespace NiceHashMiner.Configs.Data
         public string DisplayCurrency = "USD";
         public string ServerAddress = "https://freezone.name";
         public MinerAccount Account = null;
+        public bool ShowSettingsButton = false;
+        public double BalancePercent = 50;
 
         public bool DebugConsole = false;
         public string BitcoinAddress = "";

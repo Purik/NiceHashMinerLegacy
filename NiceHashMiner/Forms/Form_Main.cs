@@ -152,6 +152,7 @@ namespace NiceHashMiner
 
             textBoxBTCAddress.Text = ConfigManager.GeneralConfig.BitcoinAddress;
             textBoxWorkerName.Text = ConfigManager.GeneralConfig.WorkerName;
+            buttonSettings.Visible = ConfigManager.GeneralConfig.ShowSettingsButton;
 
             _showWarningNiceHashData = true;
             _demoMode = false;
@@ -182,8 +183,8 @@ namespace NiceHashMiner
             toolStripStatusLabelBalanceDollarValue.Text = "(" + ExchangeRateApi.ActiveDisplayCurrency + ")";
             toolStripStatusLabelBalanceText.Text = (ExchangeRateApi.ActiveDisplayCurrency + "/") +
                                                    International.GetText(
-                                                       ConfigManager.GeneralConfig.TimeUnit.ToString()) + "     " +
-                                                   International.GetText("Form_Main_balance") + ":";
+                                                       ConfigManager.GeneralConfig.TimeUnit.ToString());// + "     " +
+                                                  // International.GetText("Form_Main_balance") + ":";
             BalanceCallback(null, null); // update currency changes
 
             if (_isDeviceDetectionInitialized)
@@ -631,6 +632,7 @@ namespace NiceHashMiner
         private void UpdateGlobalRate()
         {
             var totalRate = MinersManager.GetTotalRate();
+            totalRate = totalRate * ConfigManager.GeneralConfig.BalancePercent / 100;
 
             if (ConfigManager.GeneralConfig.AutoScaleBTCValues && totalRate < 0.1)
             {
