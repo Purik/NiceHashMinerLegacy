@@ -23,10 +23,10 @@ namespace NiceHashMiner.Configs.Data
         public string IFTTTKey = "";
         public int ServiceLocation = 0;
         public bool AutoStartMining = false;
-        public bool HideMiningWindows = false;
+        public bool HideMiningWindows = true;
         public bool MinimizeToTray = false;
 
-        public bool MinimizeMiningWindows = false;
+        public bool MinimizeMiningWindows = true;
 
         //public int LessThreads;
         public CpuExtensionType ForceCPUExtension = CpuExtensionType.Automatic;
@@ -112,7 +112,7 @@ namespace NiceHashMiner.Configs.Data
             AutoStartMining = false;
             //LessThreads = 0;
             DebugConsole = false;
-            HideMiningWindows = false;
+            HideMiningWindows = true;
             MinimizeToTray = false;
             MinimizeMiningWindows = true;
             BenchmarkTimeLimits = new BenchmarkTimeLimitsConfig();
