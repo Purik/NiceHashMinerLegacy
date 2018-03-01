@@ -2,7 +2,7 @@ import argparse
 import logging
 import sys
 import os
-import urllib
+import urllib.request
 import pathlib
 import re
 import zipfile
