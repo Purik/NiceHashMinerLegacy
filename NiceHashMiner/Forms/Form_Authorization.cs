@@ -29,6 +29,7 @@ namespace NiceHashMiner.Forms
                                 account.last_name, 
                                 account.uid
                             );
+                        ConfigManager.GeneralConfig.WorkerName = account.worker_name;
                         Close();
                     }
                     else

@@ -98,7 +98,6 @@ namespace NiceHashMiner
 
             labelAccount.Text = ConfigManager.GeneralConfig.Account.getVisibleName();
             labelAccount.Text += ", добро пожаловать.";
-            ConfigManager.GeneralConfig.WorkerName = ConfigManager.GeneralConfig.Account.UID;
         }
 
         private void InitLocalization()
