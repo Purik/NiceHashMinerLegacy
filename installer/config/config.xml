@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>CryptoMiner</Name>
+    <Version>$teamcity-version</Version>
+    <Title>CryptoMiner Installer</Title>
+    <Publisher>CryptoMiner</Publisher>
+    <!-- Directory name is used in component.xml -->
+    <StartMenuDir>CryptoMiner</StartMenuDir>
+    <TargetDir>@ApplicationsDirX64@\CryptoMiner</TargetDir>
+</Installer>
