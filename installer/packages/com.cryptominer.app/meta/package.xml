@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>CryptoMiner</DisplayName>
+    <Description>CryptoMiner Application</Description>
+    <Version>$teamcity-version</Version>
+    <ReleaseDate>$teamcity-releasedate</ReleaseDate>
+    <Default>true</Default>
+	<ForcedInstallation>true</ForcedInstallation>
+    <Script>installscript.qs</Script>
+</Package>
