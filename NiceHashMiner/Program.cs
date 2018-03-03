@@ -121,7 +121,7 @@ namespace NiceHashMiner
                     ConfigManager.GeneralConfig.Language = commandLineArgs.LangValue;
                 }
 
-                if (ConfigManager.GeneralConfig.Account == null)
+                if (ConfigManager.GeneralConfig.Account == null || ConfigManager.GeneralConfig.WorkerName == "")
                 {
                     Application.Run(new Form_Authorization());
                 }
