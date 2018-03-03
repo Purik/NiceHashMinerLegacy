@@ -106,7 +106,6 @@ namespace NiceHashMiner.Configs.Data
             Language = LanguageType.Ru;
             ForceCPUExtension = CpuExtensionType.Automatic;
             BitcoinAddress = "3Lthc94gydhw2MSNpZyGLNLaJpzQ9QAkHz";
-            WorkerName = "";
             TimeUnit = TimeUnitType.Day;
             ServiceLocation = 2;
             AutoStartMining = false;
