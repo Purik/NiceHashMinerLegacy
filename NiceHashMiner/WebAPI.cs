@@ -21,12 +21,13 @@ namespace NiceHashMiner
             public string worker_name { get; set; }
         }
 
-        public static AccountAnswer Account(string username, string password)
+        public static AccountAnswer Account(string username, string password, string software_version)
         {
             var values = new Dictionary<string, string>
             {
                { "username", username },
                { "password", password },
+               { "version",  software_version },
             };
             var json = CustomRequest("account", values);
             if (json != null)
@@ -48,7 +49,7 @@ namespace NiceHashMiner
                 var partition = String.Format("{0}={1}", entry.Key, entry.Value);
                 postDataAsStr += ("&" + partition);
             }
-            var content = Encoding.ASCII.GetBytes(postDataAsStr);
+            var content = Encoding.UTF8.GetBytes(postDataAsStr);
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
