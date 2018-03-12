@@ -760,8 +760,8 @@ namespace NiceHashMiner
 
             if (ret < 0 || (ret == 0 && BetaAlphaPostfixString != ""))
             {
-                SetVersionLabel(string.Format(International.GetText("Form_Main_new_version_released"), ver));
-                _visitUrlNew = Links.VisitUrlNew + ver;
+                //SetVersionLabel(string.Format(International.GetText("Form_Main_new_version_released"), ver));
+                //_visitUrlNew = Links.VisitUrlNew + ver;
             }
         }
 
