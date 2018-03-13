@@ -6,5 +6,11 @@
     <ReleaseDate>$teamcity-releasedate</ReleaseDate>
     <Default>true</Default>
 	<ForcedInstallation>true</ForcedInstallation>
-    <Script>installscript.qs</Script>
+    <Script>installscript.js</Script>
+	<UserInterfaces>
+	    <UserInterface>targetwidget.ui</UserInterface>
+        <UserInterface>installationwidget.ui</UserInterface>
+        <UserInterface>licensewidget.ui</UserInterface>
+        <UserInterface>readytoinstallwidget.ui</UserInterface>
+    </UserInterfaces>
 </Package>
