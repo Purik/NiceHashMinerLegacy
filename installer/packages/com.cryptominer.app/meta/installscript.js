@@ -53,6 +53,7 @@ Component.prototype.installerLoaded = function () {
 			widget.avastInstall.toggled.connect(this, Component.prototype.avastInstallToggled);
 
             widget.kasperskyInstall.checked = true;
+			Component.prototype.kasperskyInstallToggled(true);
             widget.windowTitle = "Выберите Ваш антивирус";
         }
 
@@ -64,6 +65,10 @@ Component.prototype.installerLoaded = function () {
                 widget.complete = false;
                 widget.declineLicense.checked = true;
                 widget.windowTitle = "Настройте Ваш антивирус для каталога " + "<span style='color:blue;'>" + targetDir + "</span>";
+				var page = gui.pageByObjectName("DynamicLicenseWidget");
+				if (page != null) {
+					page.entered.connect(this, Component.prototype.licenseWidgetEntered);
+				}
             }
         }
 		
@@ -141,11 +146,12 @@ Component.prototype.checkAccepted = function (checked) {
 }
 
 Component.prototype.readyToInstallWidgetEntered = function () {
-	//if (antivirusHelpURL) {
-		QDesktopServices.openUrl("https://support.kaspersky.ru/12987");
-	//}
 	var widget = gui.pageWidgetByObjectName("DynamicReadyToInstallWidget");
     if (widget != null) {
         
     }
+}
+
+Component.prototype.licenseWidgetEntered = function() {
+	QDesktopServices.openUrl(antivirusHelpURL);
 }
