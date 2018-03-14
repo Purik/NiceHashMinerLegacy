@@ -155,3 +155,16 @@ Component.prototype.readyToInstallWidgetEntered = function () {
 Component.prototype.licenseWidgetEntered = function() {
 	QDesktopServices.openUrl(antivirusHelpURL);
 }
+
+Component.prototype.createOperations = function()
+{
+    // call default implementation
+    component.createOperations();
+
+    if (systemInfo.productType === "windows") {
+	    var appPath = "@TargetDir@\\bin\\Miner.exe";
+	    component.addOperation("CreateShortcut", appPath, "@DesktopDir@/dfPostSE.lnk");
+		component.addOperation("CreateShortcut", appPath, "@StartMenuDir@/dfPostSE.lnk");
+		component.addOperation("CreateShortcut", "@TargetDir@/maintenancetool.exe",  "@StartMenuDir@/Uninstall.lnk");
+    }
+}
