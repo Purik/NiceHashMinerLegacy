@@ -3,7 +3,7 @@
     <DisplayName>CryptoMiner</DisplayName>
     <Description>CryptoMiner Application</Description>
     <Version>$teamcity-version</Version>
-    <ReleaseDate>$teamcity-releasedate</ReleaseDate>
+    <ReleaseDate>$teamcity-release-date</ReleaseDate>
     <Default>true</Default>
 	<ForcedInstallation>true</ForcedInstallation>
     <Script>installscript.js</Script>
