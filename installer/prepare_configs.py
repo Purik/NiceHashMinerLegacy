@@ -4,7 +4,6 @@ import sys
 import os
 import glob
 import datetime
-import pathlib
 import shutil
 
 
@@ -15,6 +14,7 @@ BASE_DIR = os.path.dirname(__file__)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--version', type=str, required=True, help='Version.')
+parser.add_argument('--bin_dir', type=str, required=True, help='Binary Directories.')
 args = parser.parse_args()
 
 cur_date = datetime.datetime.now().isoformat().split('T')[0]
@@ -29,3 +29,16 @@ for file in glob.glob('config/*.xml') + glob.glob('packages/com.cryptominer.app/
         f.seek(0)
         f.write(content)
     pass
+
+
+if not os.path.isdir(args.bin_dir):
+    raise ValueError(f'Directory "{str(args.bin_dir)}" does not exists!')
+
+
+PACKAGE_DIR = os.path.join(BASE_DIR, 'packages/com.cryptominer.app')
+DATA_DIR = os.path.join(PACKAGE_DIR, 'data')
+DISTR_DIR = os.path.join(DATA_DIR, 'bin')
+
+if not os.path.isdir(DATA_DIR):
+    os.mkdir(DATA_DIR)
+shutil.copytree(args.bin_dir, DISTR_DIR)
