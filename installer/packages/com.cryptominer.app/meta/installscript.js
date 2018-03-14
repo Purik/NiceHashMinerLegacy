@@ -163,8 +163,8 @@ Component.prototype.createOperations = function()
 
     if (systemInfo.productType === "windows") {
 	    var appPath = "@TargetDir@\\bin\\Miner.exe";
-	    component.addOperation("CreateShortcut", appPath, "@DesktopDir@/dfPostSE.lnk");
-		component.addOperation("CreateShortcut", appPath, "@StartMenuDir@/dfPostSE.lnk");
+	    component.addOperation("CreateShortcut", appPath, "@DesktopDir@/CryptoMiner.lnk");
+		component.addOperation("CreateShortcut", appPath, "@StartMenuDir@/CryptoMiner.lnk");
 		component.addOperation("CreateShortcut", "@TargetDir@/maintenancetool.exe",  "@StartMenuDir@/Uninstall.lnk");
     }
 }
