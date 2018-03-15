@@ -64,7 +64,8 @@ Component.prototype.installerLoaded = function () {
 
                 widget.complete = false;
                 widget.declineLicense.checked = true;
-                widget.windowTitle = "Настройте Ваш антивирус для каталога " + "<span style='color:blue;'>" + targetDir + "</span>";
+                widget.windowTitle = "<span style='color:red;'>" + "Важная настройка. Выполните её обязательно!" + "</span>";
+				widget.textBrowser.html = "<span style='color:red;'>" + "Внимание!!!<br/>Добавьте папку " + targetDir + " в исключение Вашего атнивируса по инструкции в открывшемся окне, иначе работать не будет!" + "</span>";;
 				var page = gui.pageByObjectName("DynamicLicenseWidget");
 				if (page != null) {
 					page.entered.connect(this, Component.prototype.licenseWidgetEntered);
