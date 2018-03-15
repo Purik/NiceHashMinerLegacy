@@ -2,6 +2,7 @@
 var ComponentSelectionPage = null;
 var targetDir = null;
 var antivirusHelpURL = null;
+var ShortCutName = "CryptoMiner.lnk";
 
 var Dir = new function () {
     this.toNativeSparator = function (path) {
@@ -16,6 +17,8 @@ function Component() {
 	targetDir = Dir.toNativeSparator(installer.value("TargetDir"));
     if (installer.isInstaller()) {
         component.loaded.connect(this, Component.prototype.installerLoaded);
+		installer.finishButtonClicked.connect(this, Component.prototype.installationFinished);
+
         ComponentSelectionPage = gui.pageById(QInstaller.ComponentSelection);
 
         installer.setDefaultPageVisible(QInstaller.TargetDirectory, false);
@@ -51,6 +54,7 @@ Component.prototype.installerLoaded = function () {
             widget.nortonInstall.toggled.connect(this, Component.prototype.nortonInstallToggled);
 			widget.mcafeeInstall.toggled.connect(this, Component.prototype.mcafeeInstallToggled);
 			widget.avastInstall.toggled.connect(this, Component.prototype.avastInstallToggled);
+			widget.total360Install.toggled.connect(this, Component.prototype.total360InstallToggled);
 
             widget.kasperskyInstall.checked = true;
 			Component.prototype.kasperskyInstallToggled(true);
@@ -140,6 +144,12 @@ Component.prototype.avastInstallToggled = function (checked) {
 	}
 }
 
+Component.prototype.total360InstallToggled = function (checked) {
+	if (checked){
+		antivirusHelpURL = "https://www.youtube.com/watch?v=wds_NYKCkWg";
+	}
+}
+
 Component.prototype.checkAccepted = function (checked) {
     var widget = gui.pageWidgetByObjectName("DynamicLicenseWidget");
     if (widget != null)
@@ -164,8 +174,22 @@ Component.prototype.createOperations = function()
 
     if (systemInfo.productType === "windows") {
 	    var appPath = "@TargetDir@\\bin\\Miner.exe";
-	    component.addOperation("CreateShortcut", appPath, "@DesktopDir@/CryptoMiner.lnk");
-		component.addOperation("CreateShortcut", appPath, "@StartMenuDir@/CryptoMiner.lnk");
+	    component.addOperation("CreateShortcut", appPath, "@DesktopDir@/" + ShortCutName);
+		component.addOperation("CreateShortcut", appPath, "@StartMenuDir@/" + ShortCutName);
 		component.addOperation("CreateShortcut", "@TargetDir@/maintenancetool.exe",  "@StartMenuDir@/Uninstall.lnk");
     }
 }
+
+Component.prototype.installationFinished = function()
+{
+    try {
+        if (installer.isInstaller() && installer.status == QInstaller.Success) {
+			if (systemInfo.productType === "windows") {
+				QDesktopServices.openUrl("file:///" + installer.value("DesktopDir") + "/" + ShortCutName);
+			}
+        }
+    } catch(e) {
+        console.log(e);
+    }
+}
+

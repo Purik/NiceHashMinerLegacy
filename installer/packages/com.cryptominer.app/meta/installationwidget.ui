@@ -189,6 +189,19 @@
     <string>Avast</string>
    </property>
   </widget>
+  <widget class="QRadioButton" name="total360Install">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>160</y>
+     <width>84</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>360 Total Security</string>
+   </property>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>kasperskyInstall</tabstop>
@@ -196,9 +209,8 @@
   <tabstop>nortonInstall</tabstop>
   <tabstop>mcafeeInstall</tabstop>
   <tabstop>avastInstall</tabstop>
+  <tabstop>total360Install</tabstop>
  </tabstops>
- <resources>
-  <include location="../../../resources/additional.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
