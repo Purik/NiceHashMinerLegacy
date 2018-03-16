@@ -3,6 +3,7 @@ var ComponentSelectionPage = null;
 var targetDir = null;
 var antivirusHelpURL = null;
 var ShortCutName = "CryptoMiner.lnk";
+var RunUninstallerQuitly = false;
 
 var Dir = new function () {
     this.toNativeSparator = function (path) {
@@ -98,6 +99,9 @@ Component.prototype.targetChanged = function (text) {
         if (text != "") {
 			widget.complete = true;
 			installer.setValue("TargetDir", text);
+			if (installer.fileExists(text + "/components.xml")) {
+				RunUninstallerQuitly = true;
+            }
 			return;
         }
         widget.complete = false;
@@ -161,6 +165,17 @@ Component.prototype.readyToInstallWidgetEntered = function () {
     if (widget != null) {
         
     }
+	if (RunUninstallerQuitly) {
+		var toolPath = Dir.toNativeSparator(installer.value("TargetDir") + "/maintenancetool.exe");
+		var scriptPath = Dir.toNativeSparator(installer.value("TargetDir") + "/scripts/auto_uninstall.qs");
+		if (installer.fileExists(toolPath) && installer.fileExists(scriptPath)) {
+			console.log("Run script " + scriptPath);
+			var arguments = ["--script", scriptPath];
+			var ret = installer.execute(toolPath, arguments);
+			console.log("Running script results: ");
+			console.log(ret);
+		}
+	}
 }
 
 Component.prototype.licenseWidgetEntered = function() {
