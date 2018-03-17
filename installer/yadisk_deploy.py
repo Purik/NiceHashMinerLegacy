@@ -8,6 +8,7 @@ from YaDiskClient.YaDiskClient import YaDisk
 
 URL = 'https://freezone.name/ajax/update-software-version'
 BASE = os.path.dirname(__file__)
+print(f'BASE DIR: "{BASE}"')
 YaDiskDir = '/Miner'
 
 parser = argparse.ArgumentParser()
