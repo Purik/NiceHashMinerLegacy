@@ -20,7 +20,7 @@ args = parser.parse_args()
 
 disk = YaDisk(args.login, args.password)
 exe_file = None
-for f in glob.glob(BASE + '/*.exe'):
+for f in glob.glob(BASE + '\*.exe'):
     exe_file = f
 
 if exe_file:
