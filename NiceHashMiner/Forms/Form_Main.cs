@@ -828,9 +828,22 @@ namespace NiceHashMiner
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MinersManager.StopAllMiners();
-
-            MessageBoxManager.Unregister();
+            //
+            if (ConfigManager.GeneralConfig.MinimizeToTray)
+            {
+                e.Cancel = true;
+                notifyIcon1.Icon = Properties.Resources.logo;
+                notifyIcon1.Text = Application.ProductName + " v" + Application.ProductVersion +
+                                   "\nDouble-click to restore..";
+                notifyIcon1.Visible = true;
+                Hide();
+            }
+            else
+            {
+                MinersManager.StopAllMiners();
+                MessageBoxManager.Unregister();
+            }
+            
         }
 
         private void ButtonBenchmark_Click(object sender, EventArgs e)

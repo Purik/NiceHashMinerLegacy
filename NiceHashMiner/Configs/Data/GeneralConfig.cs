@@ -24,7 +24,7 @@ namespace NiceHashMiner.Configs.Data
         public int ServiceLocation = 0;
         public bool AutoStartMining = false;
         public bool HideMiningWindows = true;
-        public bool MinimizeToTray = false;
+        public bool MinimizeToTray = true;
 
         public bool MinimizeMiningWindows = true;
 
@@ -47,7 +47,7 @@ namespace NiceHashMiner.Configs.Data
         public bool DisableDefaultOptimizations = false;
 
         public bool AutoScaleBTCValues = true;
-        public bool StartMiningWhenIdle = false;
+        public bool StartMiningWhenIdle = true;
 
         public int MinIdleSeconds = 60;
         public bool LogToFile = true;
@@ -75,7 +75,7 @@ namespace NiceHashMiner.Configs.Data
 
         public bool DownloadInit3rdParty = false;
 
-        public bool AllowMultipleInstances = true;
+        public bool AllowMultipleInstances = false;
 
         // device enabled disabled stuff
         public List<ComputeDeviceConfig> LastDevicesSettup = new List<ComputeDeviceConfig>();
@@ -112,14 +112,14 @@ namespace NiceHashMiner.Configs.Data
             //LessThreads = 0;
             DebugConsole = false;
             HideMiningWindows = true;
-            MinimizeToTray = false;
+            MinimizeToTray = true;
             MinimizeMiningWindows = true;
             BenchmarkTimeLimits = new BenchmarkTimeLimitsConfig();
             DeviceDetection = new DeviceDetectionConfig();
             DisableAMDTempControl = true;
             DisableDefaultOptimizations = false;
             AutoScaleBTCValues = true;
-            StartMiningWhenIdle = false;
+            StartMiningWhenIdle = true;
             LogToFile = true;
             LogMaxFileSize = 1048576;
             ShowDriverVersionWarning = true;
