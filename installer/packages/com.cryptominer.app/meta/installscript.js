@@ -191,6 +191,7 @@ Component.prototype.createOperations = function()
 	    var appPath = "@TargetDir@\\bin\\Miner.exe";
 	    component.addOperation("CreateShortcut", appPath, "@DesktopDir@/" + ShortCutName);
 		component.addOperation("CreateShortcut", appPath, "@StartMenuDir@/" + ShortCutName);
+		component.addOperation("CreateShortcut", appPath,  "@UserStartMenuProgramsPath@/StartUp/" + ShortCutName);
 		component.addOperation("CreateShortcut", "@TargetDir@/maintenancetool.exe",  "@StartMenuDir@/Uninstall.lnk");
     }
 }
