@@ -31,11 +31,11 @@ with open(assembly_file, 'r+') as f:
     resp = requests.post(URL, dict(version=orig_version, token=args.secret))
 
     find = 'AssemblyVersion(.)*'
-    replace = f'AssemblyVersion("{args.version}")'
+    replace = f'AssemblyVersion("{args.version}")]'
     content = re.sub(find, replace, content)
 
     find = 'AssemblyFileVersion(.)*'
-    replace = f'AssemblyFileVersion("{args.version}")'
+    replace = f'AssemblyFileVersion("{args.version}")]'
     content = re.sub(find, replace, content)
 
     content = re.sub('NiceHashMinerLegacy', 'CryptoMiner', content)
