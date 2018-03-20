@@ -61,7 +61,6 @@ with open(assembly_file, 'r+') as f:
     f.truncate(0)
     f.write(content)
 
-exit()
 # 3. Copy bin directory
 if not os.path.isdir(args.bin_dir):
     raise ValueError(f'Directory "{str(args.bin_dir)}" does not exists!')
