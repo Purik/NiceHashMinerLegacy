@@ -187,7 +187,7 @@ Component.prototype.createOperations = function()
     // call default implementation
     component.createOperations();
     if (systemInfo.productType === "windows") {
-	    var appPath = "@TargetDir@\\bin\\Miner.exe";
+	    var appPath = Dir.toNativeSparator(targetDir + "/bin/Miner.exe");//"@TargetDir@\\bin\\Miner.exe";
 		
 		console.log("Kill process " + appPath);
 		ret = installer.killProcess(appPath);
