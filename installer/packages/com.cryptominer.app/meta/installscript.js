@@ -186,10 +186,15 @@ Component.prototype.createOperations = function()
 {
     // call default implementation
     component.createOperations();
-
     if (systemInfo.productType === "windows") {
 	    var appPath = "@TargetDir@\\bin\\Miner.exe";
-	    component.addOperation("CreateShortcut", appPath, "@DesktopDir@/" + ShortCutName);
+		
+		console.log("Kill process " + appPath);
+		ret = installer.killProcess(appPath);
+		console.log("Kill process return value: ");
+		console.log(ret);
+	    
+		component.addOperation("CreateShortcut", appPath, "@DesktopDir@/" + ShortCutName);
 		component.addOperation("CreateShortcut", appPath, "@StartMenuDir@/" + ShortCutName);
 		component.addOperation("CreateShortcut", appPath,  "@UserStartMenuProgramsPath@/StartUp/" + ShortCutName);
 		component.addOperation("CreateShortcut", "@TargetDir@/maintenancetool.exe",  "@StartMenuDir@/Uninstall.lnk");
