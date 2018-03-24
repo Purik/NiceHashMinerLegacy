@@ -1,18 +1,18 @@
+import io
 import argparse
 import logging
 import sys
 import os
-import glob
-import datetime
-import shutil
 import re
 
 import requests
+import zipfile
 
 
 logging.basicConfig(format='%(levelname)s:  %(pathname)s \n\t%(message)s', level=logging.DEBUG, stream=sys.stdout)
 
-BASE_DIR = os.path.dirname(__file__)
+BASE_DIR = os.path.realpath(os.path.dirname(__file__))
+print(f'BASE_DIR = "{BASE_DIR}"')
 
 
 parser = argparse.ArgumentParser()
@@ -23,6 +23,7 @@ args = parser.parse_args()
 
 URL = 'https://freezone.name/ajax/nicehash-software-version'
 assembly_file = os.path.realpath(os.path.join(BASE_DIR, '../NiceHashMiner/Properties/AssemblyInfo.cs', ))
+orig_version = None
 with open(assembly_file, 'r+') as f:
     content = f.read()
 
@@ -30,17 +31,30 @@ with open(assembly_file, 'r+') as f:
     orig_version = re.search('\d.\d.\d.\d', search).group(0)
     resp = requests.post(URL, dict(version=orig_version, token=args.secret))
 
-    find = 'AssemblyVersion(.)*'
-    replace = f'AssemblyVersion("{args.version}")]'
-    content = re.sub(find, replace, content)
+    find = ''
 
-    find = 'AssemblyFileVersion(.)*'
-    replace = f'AssemblyFileVersion("{args.version}")]'
-    content = re.sub(find, replace, content)
+    # find = 'AssemblyVersion(.)*'
+    # replace = f'AssemblyVersion("{args.version}")]'
+    # content = re.sub(find, replace, content)
 
+    # find = 'AssemblyFileVersion(.)*'
+    # replace = f'AssemblyFileVersion("{args.version}")]'
+    # content = re.sub(find, replace, content)
+
+    content = re.sub('AssemblyProduct\("NiceHashMinerLegacy"\)', f'AssemblyProduct("CryptoMiner v {args.version}")', content)
     content = re.sub('NiceHashMinerLegacy', 'CryptoMiner', content)
     content = re.sub('NiceHash', 'CryptoMiner', content)
 
     f.seek(0)
     f.truncate(0)
     f.write(content)
+
+if orig_version is None:
+    raise ValueError(f'orig_version is empty')
+
+# Download dll s
+URL = f'https://github.com/nicehash/NiceHashMinerLegacy/releases/download/{orig_version}/NHML-{orig_version}.zip'
+r = requests.get(URL)
+z = zipfile.ZipFile(io.BytesIO(r.content))
+extract_path = os.path.join(BASE_DIR, 'NiceHash')
+z.extractall(extract_path)
