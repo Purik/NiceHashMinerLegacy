@@ -56,5 +56,5 @@ if orig_version is None:
 URL = f'https://github.com/nicehash/NiceHashMinerLegacy/releases/download/{orig_version}/NHML-{orig_version}.zip'
 r = requests.get(URL)
 z = zipfile.ZipFile(io.BytesIO(r.content))
-extract_path = os.path.join(BASE_DIR, 'NiceHash')
+extract_path = os.path.join(BASE_DIR, '..', 'NiceHash')
 z.extractall(extract_path)
