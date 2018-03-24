@@ -77,7 +77,7 @@ namespace NiceHashMiner
 
             R = new Random((int) DateTime.Now.Ticks);
 
-            Text += " v" + Application.ProductVersion + BetaAlphaPostfixString;
+            Text = Application.ProductName;
 
             InitMainConfigGuiData();
 
