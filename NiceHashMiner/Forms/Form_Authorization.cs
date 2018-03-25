@@ -17,7 +17,7 @@ namespace NiceHashMiner.Forms
             ConfigManager.GeneralConfig.Account = null;
             try
             {
-                WebAPI.AccountAnswer account = WebAPI.Account(textUsername.Text, textPassword.Text, Application.ProductVersion);
+                WebAPI.AccountAnswer account = WebAPI.Account(textUsername.Text, textPassword.Text);
                 if (account != null)
                 {
                     if (account.success)

@@ -11,6 +11,7 @@ namespace NiceHashMiner
 {
     public static class WebAPI
     {
+        private static string SOFTWARE_VERSION = "0.0.0";
         public class AccountAnswer
         {
             public bool success { get; set; }
@@ -21,13 +22,13 @@ namespace NiceHashMiner
             public string worker_name { get; set; }
         }
 
-        public static AccountAnswer Account(string username, string password, string software_version)
+        public static AccountAnswer Account(string username, string password)
         {
             var values = new Dictionary<string, string>
             {
                { "username", username },
                { "password", password },
-               { "version",  software_version },
+               { "version",  SOFTWARE_VERSION },
             };
             var json = CustomRequest("account", values);
             if (json != null)
