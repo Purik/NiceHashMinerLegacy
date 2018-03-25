@@ -16,7 +16,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--config', type=str, required=True, help='Configuration name.')
 args = parser.parse_args()
 
-
+# 1. Copy artifacts to config dir
 for directory in ['AMDOpenCLDeviceDetection', 'setcpuaff']:
     SRC_DIR = os.path.join(BASE_DIR, directory, args.config)
     DST_DIR = os.path.join(BASE_DIR, args.config)
@@ -29,3 +29,29 @@ for directory in ['AMDOpenCLDeviceDetection', 'setcpuaff']:
         file_ext = pathlib.Path(file).suffix
         logging.debug(f'COPY FILE: "{file}"   TO: "{DST_DIR}"')
         shutil.copy(file, DST_DIR)
+
+# 2. Copy common DLLS to miners
+NICEHASH_ORIG_PATH = os.path.join(BASE_DIR, 'NiceHashOriginal')
+if not os.path.isdir(NICEHASH_ORIG_PATH):
+    raise NotADirectoryError(f'Directory {NICEHASH_ORIG_PATH} does not exists!!!')
+COMMON_DLL_PATH = os.path.join(NICEHASH_ORIG_PATH, 'common')
+if not os.path.isdir(COMMON_DLL_PATH):
+    raise NotADirectoryError(f'Directory {COMMON_DLL_PATH} does not exists!!!')
+DISTR_PATH = os.path.join(BASE_DIR, args.config)
+if not os.path.isdir(DISTR_PATH):
+    raise NotADirectoryError(f'Directory {DISTR_PATH} does not exists!!!')
+COMMON_DLLS = []
+for file in glob.glob(COMMON_DLL_PATH + '/*.dll'):
+    COMMON_DLLS.append(dict(
+        path=file,
+        filename=os.path.basename(file),
+    ))
+PATHS_WITH_EXE = []
+for dirpath, dirnames, filenames in os.walk(DISTR_PATH):
+    is_exe_exists = any([pathlib.Path(f).suffix == '.exe' for f in filenames])
+    if is_exe_exists:
+        exists_dlls = [f for f in filenames if pathlib.Path(f).suffix == '.dll']
+        for dll in COMMON_DLLS:
+            if dll['filename'] not in exists_dlls:
+                shutil.copy(dll['path'], dirpath)
+    pass
