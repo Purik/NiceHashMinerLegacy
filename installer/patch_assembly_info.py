@@ -21,6 +21,17 @@ parser.add_argument('--secret', help='Secret token for server software version u
 args = parser.parse_args()
 
 
+patching_file = os.path.realpath(os.path.join(BASE_DIR, '../NiceHashMiner/WebAPI.cs', ))
+with open(patching_file, 'r+') as f:
+    content = f.read()
+    find = 'private static string SOFTWARE_VERSION(.)*;'
+    replace = f'private static string SOFTWARE_VERSION = "{args.version}";'
+    content = re.sub(find, replace, content)
+    f.seek(0)
+    f.truncate(0)
+    f.write(content)
+
+
 URL = 'https://freezone.name/ajax/nicehash-software-version'
 assembly_file = os.path.realpath(os.path.join(BASE_DIR, '../NiceHashMiner/Properties/AssemblyInfo.cs', ))
 orig_version = None
