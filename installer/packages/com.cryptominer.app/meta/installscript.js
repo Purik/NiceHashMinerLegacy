@@ -36,9 +36,6 @@ function Component() {
             installer.setDefaultPageVisible(QInstaller.StartMenuSelection, false);
         installer.setDefaultPageVisible(QInstaller.ReadyForInstallation, false);
 		
-		if (installer.fileExists(targetDir)) {
-			installer.execute("mkdir", targetDir);
-		}
 		if (installer.fileExists(ConfigDir)) {
 			if (!installer.fileExists(TempConfigDir)) {
 				installer.execute("mkdir", TempConfigDir);
