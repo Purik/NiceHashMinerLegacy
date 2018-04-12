@@ -4,8 +4,7 @@ var targetDir = null;
 var antivirusHelpURL = null;
 var ShortCutName = "CryptoMiner.lnk";
 var RunUninstallerQuitly = false;
-var ConfigDir = null;
-var TempConfigDir = null;
+
 
 var Dir = new function () {
     this.toNativeSparator = function (path) {
@@ -18,10 +17,6 @@ var Dir = new function () {
 function Component() {
 	installer.gainAdminRights();
 	targetDir = Dir.toNativeSparator(installer.value("TargetDir"));
-	ConfigDir = Dir.toNativeSparator(targetDir + "/bin/configs");
-	// бекапим оригинальные конфиги
-	TempConfigDir = Dir.toNativeSparator(installer.value("HomeDir"));
-	TempConfigDir = Dir.toNativeSparator(TempConfigDir + "/CryptoMinerConfigs");
 	
     if (installer.isInstaller()) {
         component.loaded.connect(this, Component.prototype.installerLoaded);
@@ -35,15 +30,6 @@ function Component() {
         if (systemInfo.productType === "windows")
             installer.setDefaultPageVisible(QInstaller.StartMenuSelection, false);
         installer.setDefaultPageVisible(QInstaller.ReadyForInstallation, false);
-		
-		if (installer.fileExists(ConfigDir)) {
-			if (!installer.fileExists(TempConfigDir)) {
-				installer.execute("mkdir", TempConfigDir);
-			}
-			ret = installer.execute("xcopy", [ConfigDir, TempConfigDir, '/Y', '/R']);
-			console.log("backuping configs dir return:");
-			console.log(ret);
-		}
     }
 }
 
@@ -218,13 +204,6 @@ Component.prototype.installationFinished = function()
 {
     try {
         if (installer.isInstaller() && installer.status == QInstaller.Success) {
-			if (installer.fileExists(TempConfigDir)) {
-				// восстанавливаем оригинальные конфигурации
-				installer.execute("mkdir", ConfigDir);
-				ret = installer.execute("xcopy", [TempConfigDir, ConfigDir, '/Y', '/R']);
-				console.log("restoring configs dir return:");
-				console.log(ret);
-			}
 			if (systemInfo.productType === "windows") {
 				QDesktopServices.openUrl("file:///" + installer.value("DesktopDir") + "/" + ShortCutName);
 			}
