@@ -31,7 +31,12 @@ namespace NiceHashMiner.Configs.ConfigJsonFile
 
         protected ConfigFile(string iConfFolder, string fileName, string fileNameOld)
         {
-            _confFolder = iConfFolder;
+            string baseDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
+            string confDir = Path.Combine(baseDir, "CryptoMiner", iConfFolder);
+
+            //_confFolder = iConfFolder;
+            _confFolder = confDir;
+
             if (fileName.Contains(_confFolder))
             {
                 FilePath = fileName;
