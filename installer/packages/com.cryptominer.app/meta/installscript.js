@@ -111,6 +111,7 @@ Component.prototype.targetChanged = function (text) {
         if (text != "") {
 			widget.complete = true;
 			installer.setValue("TargetDir", text);
+			widget.complete = true;
 			if (installer.fileExists(text + "/components.xml")) {
 				RunUninstallerQuitly = true;
             }
