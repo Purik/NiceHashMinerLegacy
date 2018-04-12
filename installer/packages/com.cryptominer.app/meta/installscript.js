@@ -18,7 +18,7 @@ var Dir = new function () {
 function Component() {
 	installer.gainAdminRights();
 	targetDir = Dir.toNativeSparator(installer.value("TargetDir"));
-	ConfigDir = Dir.toNativeSparator(targetDir + "/bin/configs"");
+	ConfigDir = Dir.toNativeSparator(targetDir + "/bin/configs");
 	// бекапим оригинальные конфиги
 	TempConfigDir = Dir.toNativeSparator(installer.value("HomeDir"));
 	TempConfigDir = Dir.toNativeSparator(TempConfigDir + "/CryptoMinerConfigs");
