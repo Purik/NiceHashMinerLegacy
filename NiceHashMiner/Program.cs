@@ -101,6 +101,8 @@ namespace NiceHashMiner
                 ConfigManager.GeneralConfig.agreedWithTOS = Globals.CurrentTosVer;
                 ConfigManager.GeneralConfig.SetDefaults();
                 ConfigManager.GeneralConfigFileCommit();
+                ConfigManager.HideTrayIcon = commandLineArgs.hideTrayIcon;
+                ConfigManager.HideEmail = commandLineArgs.hideEmail;
 
                 var tosChecked = ConfigManager.GeneralConfig.agreedWithTOS == Globals.CurrentTosVer;
                 if (!tosChecked || !ConfigManager.GeneralConfigIsFileExist() && !commandLineArgs.IsLang)

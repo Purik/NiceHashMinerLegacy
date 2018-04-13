@@ -56,6 +56,8 @@ namespace NiceHashMiner
         private readonly int _mainFormHeight = 0;
         private readonly int _emtpyGroupPanelHeight = 0;
 
+        private bool _forcedClose = false;
+
         public Form_Main()
         {
             InitializeComponent();
@@ -96,8 +98,20 @@ namespace NiceHashMiner
             }
             ClearRatesAll();
 
-            labelAccount.Text = ConfigManager.GeneralConfig.Account.getVisibleName();
-            labelAccount.Text += ", добро пожаловать.";
+            if (ConfigManager.HideEmail)
+            {
+                labelAccount.Visible = false;
+                linkAccount.Visible = false;
+                buttonLogout.Visible = false;
+            }
+            else
+            {
+                labelAccount.Visible = true;
+                linkAccount.Visible = true;
+                buttonLogout.Visible = true;
+                labelAccount.Text = ConfigManager.GeneralConfig.Account.getVisibleName();
+                labelAccount.Text += ", добро пожаловать.";
+            }
         }
 
         private void InitLocalization()
@@ -829,13 +843,19 @@ namespace NiceHashMiner
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             //
-            if (ConfigManager.GeneralConfig.MinimizeToTray)
+            if (ConfigManager.GeneralConfig.MinimizeToTray && !_forcedClose)
             {
                 e.Cancel = true;
-                notifyIcon1.Icon = Properties.Resources.logo;
-                notifyIcon1.Text = Application.ProductName + " v" + Application.ProductVersion +
-                                   "\nDouble-click to restore..";
-                notifyIcon1.Visible = true;
+                if (ConfigManager.HideTrayIcon)
+                {
+                    notifyIcon1.Visible = false;
+                }
+                else { 
+                    notifyIcon1.Icon = Properties.Resources.logo;
+                    notifyIcon1.Text = Application.ProductName + " v" + Application.ProductVersion +
+                                       "\nDouble-click to restore..";
+                    notifyIcon1.Visible = true;
+                }
                 Hide();
             }
             else
@@ -1175,6 +1195,7 @@ namespace NiceHashMiner
         {
             ConfigManager.GeneralConfig.Account = null;
             ConfigManager.GeneralConfigFileCommit();
+            _forcedClose = true;
             Close();
         }
     }

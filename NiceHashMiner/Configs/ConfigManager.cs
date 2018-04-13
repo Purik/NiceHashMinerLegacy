@@ -10,6 +10,8 @@ namespace NiceHashMiner.Configs
         private const string Tag = "ConfigManager";
         public static GeneralConfig GeneralConfig = new GeneralConfig();
         public static SecretConfig SecretConfig = new SecretConfig();
+        public static bool HideTrayIcon = false;
+        public static bool HideEmail = false;
 
         // helper variables
         private static bool _isGeneralConfigFileInit;

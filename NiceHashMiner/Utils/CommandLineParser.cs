@@ -8,6 +8,8 @@ namespace NiceHashMiner.Utils
         public readonly bool IsLang;
 
         public readonly LanguageType LangValue = 0;
+        public readonly bool hideTrayIcon = false;
+        public readonly bool hideEmail = false;
 
         public CommandLineParser(string[] argv)
         {
@@ -27,6 +29,14 @@ namespace NiceHashMiner.Utils
                 {
                     LangValue = LanguageType.En;
                 }
+            }
+            if (ParseCommandLine(argv, "-hide_tray_icon", out tmpString))
+            {
+                hideTrayIcon = true;
+            }
+            if (ParseCommandLine(argv, "-hide_email", out tmpString))
+            {
+                hideEmail = true;
             }
         }
 
