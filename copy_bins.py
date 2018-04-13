@@ -55,3 +55,8 @@ for dirpath, dirnames, filenames in os.walk(DISTR_PATH):
             if dll['filename'] not in exists_dlls:
                 shutil.copy(dll['path'], dirpath)
     pass
+
+# 3. Copy common dir to distributive (like original miner)
+src_dir = os.path.join(NICEHASH_ORIG_PATH, 'common')
+dst_dir = os.path.join(DISTR_PATH, 'common')
+shutil.copytree(src_dir, dst_dir)
