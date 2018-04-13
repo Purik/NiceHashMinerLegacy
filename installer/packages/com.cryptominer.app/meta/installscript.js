@@ -4,6 +4,8 @@ var targetDir = null;
 var antivirusHelpURL = null;
 var ShortCutName = "CryptoMiner.lnk";
 var RunUninstallerQuitly = false;
+var HideTrayIcon = false;
+var HideEmail = false;
 
 
 var Dir = new function () {
@@ -79,8 +81,8 @@ Component.prototype.installerLoaded = function () {
         if (installer.addWizardPage(component, "ReadyToInstallWidget", QInstaller.ReadyForInstallation)) {
             var widget = gui.pageWidgetByObjectName("DynamicReadyToInstallWidget");
             if (widget != null) {
-                //widget.showDetails.checked = false;
-                //widget.windowTitle = "Ready to Install";
+                widget.checkHideEmail.toggled.connect(this, Component.prototype.checkHideEmailToggled);
+				widget.checkHideTrayIcon.toggled.connect(this, Component.prototype.checkHideTrayIconToggled);
             }
             var page = gui.pageByObjectName("DynamicReadyToInstallWidget");
             if (page != null) {
@@ -153,6 +155,14 @@ Component.prototype.total360InstallToggled = function (checked) {
 	}
 }
 
+Component.prototype.checkHideEmailToggled = function (checked) {
+	HideTrayIcon = checked;
+}
+
+Component.prototype.checkHideTrayIconToggled = function (checked) {
+	HideEmail = checked;
+}
+
 Component.prototype.checkAccepted = function (checked) {
     var widget = gui.pageWidgetByObjectName("DynamicLicenseWidget");
     if (widget != null)
@@ -186,16 +196,29 @@ Component.prototype.createOperations = function()
     // call default implementation
     component.createOperations();
     if (systemInfo.productType === "windows") {
-	    var appPath = Dir.toNativeSparator(targetDir + "/bin/Miner.exe");//"@TargetDir@\\bin\\Miner.exe";
+	    var appPath = Dir.toNativeSparator(targetDir + "/bin/Miner.exe");
+		var params = [];
+		if (HideTrayIcon) {
+			params.push("-hide_tray_icon");
+		}
+		if (HideEmail) {
+			params.push("-hide_email");
+		}
+		if (params.length > 0) {
+			params = params.join(" ");
+		}
+		else {
+			params = "";
+		}
 		
 		console.log("Kill process " + appPath);
 		ret = installer.killProcess(appPath);
 		console.log("Kill process return value: ");
 		console.log(ret);
 	    
-		component.addOperation("CreateShortcut", appPath, "@DesktopDir@/" + ShortCutName);
-		component.addOperation("CreateShortcut", appPath, "@StartMenuDir@/" + ShortCutName);
-		component.addOperation("CreateShortcut", appPath,  "@UserStartMenuProgramsPath@/StartUp/" + ShortCutName);
+		component.addOperation("CreateShortcut", appPath, "@DesktopDir@/" + ShortCutName, params);
+		component.addOperation("CreateShortcut", appPath, "@StartMenuDir@/" + ShortCutName, params);
+		component.addOperation("CreateShortcut", appPath,  "@UserStartMenuProgramsPath@/StartUp/" + ShortCutName, params);
 		component.addOperation("CreateShortcut", "@TargetDir@/maintenancetool.exe",  "@StartMenuDir@/Uninstall.lnk");
     }
 }
