@@ -247,8 +247,13 @@ namespace NiceHashMiner.Forms
 
             benchmarkOptions1.SetPerformanceType(benchmarkPerformanceType);
 
-            // benchmark only unique devices
             devicesListViewEnableControl1.SetIListItemCheckColorSetter(this);
+            foreach (var device in ComputeDeviceManager.Avaliable.AllAvaliableDevices)
+            {
+                device.Enabled = true;
+            }
+
+            // benchmark only unique devices
             devicesListViewEnableControl1.SetComputeDevices(ComputeDeviceManager.Avaliable.AllAvaliableDevices);
 
             // use this to track miner benchmark statuses

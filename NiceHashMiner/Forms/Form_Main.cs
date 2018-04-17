@@ -200,10 +200,11 @@ namespace NiceHashMiner
                                                   // International.GetText("Form_Main_balance") + ":";
             BalanceCallback(null, null); // update currency changes
 
-            if (_isDeviceDetectionInitialized)
+            /*if (_isDeviceDetectionInitialized)
             {
                 devicesListViewEnableControl1.ResetComputeDevices(ComputeDeviceManager.Avaliable.AllAvaliableDevices);
-            }
+            }*/
+
         }
 
         public void AfterLoadComplete()
@@ -1077,7 +1078,7 @@ namespace NiceHashMiner
             // Check if the user has run benchmark first
             if (!isBenchInit)
             {
-                var result = DialogResult.No;
+                var result = DialogResult.Yes;
                 if (showWarnings)
                 {
                     result = MessageBox.Show(International.GetText("EnabledUnbenchmarkedAlgorithmsWarning"),
@@ -1124,9 +1125,9 @@ namespace NiceHashMiner
             // Disable profitable notification on start
             _isNotProfitable = false;
 
-            ConfigManager.GeneralConfig.BitcoinAddress = textBoxBTCAddress.Text.Trim();
-            ConfigManager.GeneralConfig.WorkerName = textBoxWorkerName.Text.Trim();
-            ConfigManager.GeneralConfig.ServiceLocation = comboBoxLocation.SelectedIndex;
+            //ConfigManager.GeneralConfig.BitcoinAddress = textBoxBTCAddress.Text.Trim();
+            //ConfigManager.GeneralConfig.WorkerName = textBoxWorkerName.Text.Trim();
+            //ConfigManager.GeneralConfig.ServiceLocation = comboBoxLocation.SelectedIndex;
 
             InitFlowPanelStart();
             ClearRatesAll();
