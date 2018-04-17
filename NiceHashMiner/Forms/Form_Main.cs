@@ -37,6 +37,7 @@ namespace NiceHashMiner
         private readonly Random R;
 
         private Form_Loading _loadingScreen;
+        private Form_DriverUpdater _driverUpdaterForm;
         private Form_Benchmark _benchmarkForm;
 
         private int _flowLayoutPanelVisibleCount = 0;
@@ -221,6 +222,12 @@ namespace NiceHashMiner
 
         private void IdleCheck_Tick(object sender, EventArgs e)
         {
+
+            if (true || ComputeDeviceManager.Avaliable.AvailCpus == 0 || ComputeDeviceManager.Avaliable.AvailGpUs == 0)
+            {
+                _driverUpdaterForm.Show();
+            }
+
             if (!ConfigManager.GeneralConfig.StartMiningWhenIdle || _isManuallyStarted) return;
 
             var msIdle = Helpers.GetIdleTime();
@@ -300,6 +307,10 @@ namespace NiceHashMiner
             devicesListViewEnableControl1.ResetComputeDevices(ComputeDeviceManager.Avaliable.AllAvaliableDevices);
             // set properties after
             devicesListViewEnableControl1.SaveToGeneralConfig = true;
+            if (ComputeDeviceManager.Avaliable.AvailCpus == 0 || ComputeDeviceManager.Avaliable.AvailGpUs == 0)
+            {
+                _driverUpdaterForm.Show();
+            }
 
             _loadingScreen.IncreaseLoadCounterAndMessage(
                 International.GetText("Form_Main_loadtext_CheckLatestVersion"));
@@ -487,6 +498,9 @@ namespace NiceHashMiner
             _startupTimer.Tick += StartupTimer_Tick;
             _startupTimer.Interval = 200;
             _startupTimer.Start();
+
+            _driverUpdaterForm = new Form_DriverUpdater();
+            SetChildFormCenter(_driverUpdaterForm);
         }
 
         private async void SMAMinerCheck_Tick(object sender, EventArgs e)
