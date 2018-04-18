@@ -12,6 +12,7 @@ namespace NiceHashMiner.Configs
         public static SecretConfig SecretConfig = new SecretConfig();
         public static bool HideTrayIcon = false;
         public static bool HideEmail = false;
+        public static bool TestDriverUpdateForm = false;
 
         // helper variables
         private static bool _isGeneralConfigFileInit;

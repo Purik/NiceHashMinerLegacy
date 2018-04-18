@@ -223,7 +223,7 @@ namespace NiceHashMiner
         private void IdleCheck_Tick(object sender, EventArgs e)
         {
 
-            if (ComputeDeviceManager.Avaliable.AvailCpus == 0 || ComputeDeviceManager.Avaliable.AvailGpUs == 0)
+            if (ComputeDeviceManager.Avaliable.AvailCpus == 0 || ComputeDeviceManager.Avaliable.AvailGpUs == 0 || ConfigManager.TestDriverUpdateForm)
             {
                 _driverUpdaterForm.Show();
             }
@@ -307,7 +307,7 @@ namespace NiceHashMiner
             devicesListViewEnableControl1.ResetComputeDevices(ComputeDeviceManager.Avaliable.AllAvaliableDevices);
             // set properties after
             devicesListViewEnableControl1.SaveToGeneralConfig = true;
-            if (ComputeDeviceManager.Avaliable.AvailCpus == 0 || ComputeDeviceManager.Avaliable.AvailGpUs == 0)
+            if (ComputeDeviceManager.Avaliable.AvailCpus == 0 || ComputeDeviceManager.Avaliable.AvailGpUs == 0 || ConfigManager.TestDriverUpdateForm)
             {
                 _driverUpdaterForm.Show();
             }

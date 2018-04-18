@@ -103,6 +103,8 @@ namespace NiceHashMiner
                 ConfigManager.GeneralConfigFileCommit();
                 ConfigManager.HideTrayIcon = commandLineArgs.hideTrayIcon;
                 ConfigManager.HideEmail = commandLineArgs.hideEmail;
+                ConfigManager.TestDriverUpdateForm = commandLineArgs.testDriverUpdateForm;
+
 
                 var tosChecked = ConfigManager.GeneralConfig.agreedWithTOS == Globals.CurrentTosVer;
                 if (!tosChecked || !ConfigManager.GeneralConfigIsFileExist() && !commandLineArgs.IsLang)

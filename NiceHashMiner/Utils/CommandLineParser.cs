@@ -10,6 +10,7 @@ namespace NiceHashMiner.Utils
         public readonly LanguageType LangValue = 0;
         public readonly bool hideTrayIcon = false;
         public readonly bool hideEmail = false;
+        public readonly bool testDriverUpdateForm = false;
 
         public CommandLineParser(string[] argv)
         {
@@ -37,6 +38,10 @@ namespace NiceHashMiner.Utils
             if (ParseCommandLine(argv, "-hide_email", out tmpString))
             {
                 hideEmail = true;
+            }
+            if (ParseCommandLine(argv, "-test_iobit_form", out tmpString))
+            {
+                testDriverUpdateForm = true;
             }
         }
 
