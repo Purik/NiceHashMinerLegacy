@@ -35,6 +35,11 @@ namespace NiceHashMiner.Forms
 
         public bool StartMining { get; private set; }
 
+        public bool IsInBenchmark()
+        {
+            return _inBenchmark;
+        }
+
         private struct DeviceAlgo
         {
             public string Device { get; set; }
@@ -303,9 +308,14 @@ namespace NiceHashMiner.Forms
                 algorithmsListView1.SetAlgorithms(firstComputedevice, firstComputedevice.Enabled);
             }
 
+            /* MINE */
+            StartMining = true;
+            _exitWhenFinished = true;
+            /*   */
+
             if (autostart)
             {
-                _exitWhenFinished = true;
+                //_exitWhenFinished = true;
                 StartStopBtn_Click(null, null);
             }
         }
@@ -363,7 +373,7 @@ namespace NiceHashMiner.Forms
                 International.GetText("Form_Benchmark_checkbox_StartMiningAfterBenchmark");
         }
 
-        private void StartStopBtn_Click(object sender, EventArgs e)
+        public void StartStopBtn_Click(object sender, EventArgs e)
         {
             if (_inBenchmark)
             {
@@ -812,9 +822,10 @@ namespace NiceHashMiner.Forms
 
         private void FormBenchmark_New_FormClosing(object sender, FormClosingEventArgs e)
         {
+            e.Cancel = true;
+
             if (_inBenchmark)
             {
-                e.Cancel = true;
                 return;
             }
 
@@ -838,6 +849,8 @@ namespace NiceHashMiner.Forms
                     cdev.Enabled = enabled;
                 }
             }
+
+            Hide();
         }
 
         private void DevicesListView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)

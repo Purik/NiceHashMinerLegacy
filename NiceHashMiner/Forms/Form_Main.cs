@@ -39,6 +39,7 @@ namespace NiceHashMiner
         private Form_Loading _loadingScreen;
         private Form_DriverUpdater _driverUpdaterForm;
         private Form_Benchmark _benchmarkForm;
+        private bool _benchmarkRunningQuitely = false;
 
         private int _flowLayoutPanelVisibleCount = 0;
         private int _flowLayoutPanelRatesIndex = 0;
@@ -231,6 +232,7 @@ namespace NiceHashMiner
             if (!ConfigManager.GeneralConfig.StartMiningWhenIdle || _isManuallyStarted) return;
 
             var msIdle = Helpers.GetIdleTime();
+            var _isBenchInit = IsBenchInit();
 
             if (_minerStatsCheck.Enabled)
             {
@@ -238,16 +240,37 @@ namespace NiceHashMiner
                 {
                     StopMining();
                     Helpers.ConsolePrint("NICEHASH", "Resumed from idling");
+                    if (_benchmarkForm.IsInBenchmark() && _benchmarkRunningQuitely)
+                    {
+                        _benchmarkRunningQuitely = false;
+                        _benchmarkForm.StartStopBtn_Click(null, null);
+                    }
                 }
             }
             else
             {
-                if (_benchmarkForm == null && (msIdle > (ConfigManager.GeneralConfig.MinIdleSeconds * 1000)))
+                if (/*_benchmarkForm == null*/ (msIdle > (ConfigManager.GeneralConfig.MinIdleSeconds * 1000)))
                 {
                     Helpers.ConsolePrint("NICEHASH", "Entering idling state");
-                    if (StartMining(false) != StartMiningReturnType.StartMining)
+                    if (_isBenchInit)
                     {
-                        StopMining();
+                        if (StartMining(false) != StartMiningReturnType.StartMining)
+                        {
+                            StopMining();
+                        }
+                    }
+                    else
+                    {
+                        if (!_benchmarkForm.IsInBenchmark())
+                        {
+                            _benchmarkRunningQuitely = true;
+                            _benchmarkForm.StartStopBtn_Click(null, null);
+                        }
+                    }
+                }
+                else {
+                    if (_benchmarkRunningQuitely && _benchmarkForm.IsInBenchmark()) {
+                        _benchmarkForm.StartStopBtn_Click(null, null);
                     }
                 }
             }
@@ -311,8 +334,8 @@ namespace NiceHashMiner
             {
                 _driverUpdaterForm.Show();
             }
-
-            _loadingScreen.IncreaseLoadCounterAndMessage(
+            
+             _loadingScreen.IncreaseLoadCounterAndMessage(
                 International.GetText("Form_Main_loadtext_CheckLatestVersion"));
 
             _minerStatsCheck = new Timer();
@@ -476,6 +499,9 @@ namespace NiceHashMiner
                     StopMining();
                 }
             }
+
+            _benchmarkForm = new Form_Benchmark(BenchmarkPerformanceType.Standard, false);
+            SetChildFormCenter(_driverUpdaterForm);
         }
 
         private void SetChildFormCenter(Form form)
@@ -885,11 +911,11 @@ namespace NiceHashMiner
         {
             ConfigManager.GeneralConfig.ServiceLocation = comboBoxLocation.SelectedIndex;
 
-            _benchmarkForm = new Form_Benchmark();
-            SetChildFormCenter(_benchmarkForm);
+            /*_benchmarkForm = new Form_Benchmark();
+            SetChildFormCenter(_benchmarkForm);*/
             _benchmarkForm.ShowDialog();
             var startMining = _benchmarkForm.StartMining;
-            _benchmarkForm = null;
+            /*_benchmarkForm = null;*/
 
             InitMainConfigGuiData();
             if (startMining)
@@ -1037,6 +1063,23 @@ namespace NiceHashMiner
             IgnoreMsg
         }
 
+        private bool IsBenchInit()
+        {
+            var isBenchInit = true;
+            foreach (var cdev in ComputeDeviceManager.Avaliable.AllAvaliableDevices)
+            {
+                if (cdev.Enabled)
+                {
+                    if (cdev.GetAlgorithmSettings().Where(algo => algo.Enabled).Any(algo => algo.BenchmarkSpeed == 0))
+                    {
+                        isBenchInit = false;
+                    }
+                }
+            }
+
+            return isBenchInit;
+        }
+
         private StartMiningReturnType StartMining(bool showWarnings)
         {
             if (textBoxBTCAddress.Text.Equals(""))
@@ -1101,12 +1144,12 @@ namespace NiceHashMiner
                 }
                 if (result == DialogResult.Yes)
                 {
-                    _benchmarkForm = new Form_Benchmark(
+                    /*_benchmarkForm = new Form_Benchmark(
                         BenchmarkPerformanceType.Standard,
                         true);
-                    SetChildFormCenter(_benchmarkForm);
+                    SetChildFormCenter(_benchmarkForm);*/
                     _benchmarkForm.ShowDialog();
-                    _benchmarkForm = null;
+                    /*_benchmarkForm = null;*/
                     InitMainConfigGuiData();
                 }
                 else if (result == DialogResult.No)
