@@ -133,7 +133,7 @@ namespace NiceHashMiner.Configs.Data
             SwitchMinSecondsDynamic = 30;
             SwitchMinSecondsAMD = 90;
             SwitchProfitabilityThreshold = 0.05; // percent
-            MinIdleSeconds = 60;
+            MinIdleSeconds = 360;
             DisplayCurrency = "USD";
             ApiBindPortPoolStart = 4000;
             MinimumProfit = 0;
