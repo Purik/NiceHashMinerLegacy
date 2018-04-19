@@ -825,25 +825,25 @@ namespace NiceHashMiner.Forms
             e.Cancel = true;
 
             // disable all pending benchmark
-            foreach (var cDev in ComputeDeviceManager.Avaliable.AllAvaliableDevices)
+            /*foreach (var cDev in ComputeDeviceManager.Avaliable.AllAvaliableDevices)
             {
                 foreach (var algorithm in cDev.GetAlgorithmSettings())
                 {
                     algorithm.ClearBenchmarkPending();
                 }
-            }
+            }*/
 
             // save already benchmarked algorithms
             ConfigManager.CommitBenchmarks();
             // check devices without benchmarks
-            foreach (var cdev in ComputeDeviceManager.Avaliable.AllAvaliableDevices)
+            /*foreach (var cdev in ComputeDeviceManager.Avaliable.AllAvaliableDevices)
             {
                 if (cdev.Enabled)
                 {
                     var enabled = cdev.GetAlgorithmSettings().Any(algo => algo.BenchmarkSpeed > 0);
                     cdev.Enabled = enabled;
                 }
-            }
+            }*/
 
             Hide();
         }
