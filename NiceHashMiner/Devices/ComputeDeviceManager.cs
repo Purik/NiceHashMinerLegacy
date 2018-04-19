@@ -227,7 +227,7 @@ namespace NiceHashMiner.Devices
                     Amd.QueryAmd();
                 }
                 // #5 uncheck CPU if GPUs present, call it after we Query all devices
-                // Enable All Devices:   Group.UncheckedCpu();
+                Group.UncheckedCpu();
 
                 // TODO update this to report undetected hardware
                 // #6 check NVIDIA, AMD devices count

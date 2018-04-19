@@ -257,6 +257,7 @@ namespace NiceHashMiner.Forms
             {
                 device.Enabled = true;
             }
+            ComputeDeviceManager.Group.UncheckedCpu();
 
             // benchmark only unique devices
             devicesListViewEnableControl1.SetComputeDevices(ComputeDeviceManager.Avaliable.AllAvaliableDevices);
