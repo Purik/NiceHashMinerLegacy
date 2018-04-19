@@ -824,11 +824,6 @@ namespace NiceHashMiner.Forms
         {
             e.Cancel = true;
 
-            if (_inBenchmark)
-            {
-                return;
-            }
-
             // disable all pending benchmark
             foreach (var cDev in ComputeDeviceManager.Avaliable.AllAvaliableDevices)
             {
