@@ -270,6 +270,7 @@ namespace NiceHashMiner
                 }
                 else {
                     if (_benchmarkRunningQuitely && _benchmarkForm.IsInBenchmark()) {
+                        _benchmarkRunningQuitely = false;
                         _benchmarkForm.StartStopBtn_Click(null, null);
                     }
                 }
