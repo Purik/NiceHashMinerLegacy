@@ -36,7 +36,13 @@ namespace NiceHashMiner.Forms
                     else
                     {
                         linkRecoveryLink.Visible = true;
+                        labelServerError.Visible = false;
                     }
+                }
+                else
+                {
+                    linkRecoveryLink.Visible = false;
+                    labelServerError.Visible = true;
                 }
             }
             finally

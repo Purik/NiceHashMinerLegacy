@@ -35,6 +35,7 @@
             this.labelPassword = new System.Windows.Forms.Label();
             this.buttonAuth = new System.Windows.Forms.Button();
             this.linkRecoveryLink = new System.Windows.Forms.LinkLabel();
+            this.labelServerError = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textInfo
@@ -86,7 +87,7 @@
             // 
             // buttonAuth
             // 
-            this.buttonAuth.Location = new System.Drawing.Point(153, 183);
+            this.buttonAuth.Location = new System.Drawing.Point(153, 202);
             this.buttonAuth.Name = "buttonAuth";
             this.buttonAuth.Size = new System.Drawing.Size(106, 23);
             this.buttonAuth.TabIndex = 5;
@@ -107,11 +108,23 @@
             this.linkRecoveryLink.Visible = false;
             this.linkRecoveryLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkRecoveryLink_LinkClicked);
             // 
+            // labelServerError
+            // 
+            this.labelServerError.AutoSize = true;
+            this.labelServerError.ForeColor = System.Drawing.Color.Red;
+            this.labelServerError.Location = new System.Drawing.Point(105, 186);
+            this.labelServerError.Name = "labelServerError";
+            this.labelServerError.Size = new System.Drawing.Size(209, 13);
+            this.labelServerError.TabIndex = 7;
+            this.labelServerError.Text = "Сервер недоступен. Попробуйте позже.\r\n";
+            this.labelServerError.Visible = false;
+            // 
             // Form_Authorization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 237);
+            this.Controls.Add(this.labelServerError);
             this.Controls.Add(this.linkRecoveryLink);
             this.Controls.Add(this.buttonAuth);
             this.Controls.Add(this.labelPassword);
@@ -139,5 +152,6 @@
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.Button buttonAuth;
         private System.Windows.Forms.LinkLabel linkRecoveryLink;
+        private System.Windows.Forms.Label labelServerError;
     }
 }

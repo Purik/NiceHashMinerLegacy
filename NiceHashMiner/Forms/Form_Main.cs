@@ -30,6 +30,7 @@ namespace NiceHashMiner
         private Timer _startupTimer;
         private Timer _idleCheck;
         private SystemTimer _computeDevicesCheckTimer;
+        private Timer _balanceUpdater;
 
         private bool _showWarningNiceHashData;
         private bool _demoMode;
@@ -113,6 +114,26 @@ namespace NiceHashMiner
                 buttonLogout.Visible = true;
                 labelAccount.Text = ConfigManager.GeneralConfig.Account.getVisibleName();
                 labelAccount.Text += ", добро пожаловать.";
+            }
+
+            _balanceUpdater = new Timer();
+            _balanceUpdater.Tick += BalanceUpdaterRoutine;
+            _balanceUpdater.Interval = 1000 * 300; // every 5 minutes
+            _balanceUpdater.Start();
+            BalanceUpdaterRoutine(null, null);
+        }
+
+        private void BalanceUpdaterRoutine(object sender, EventArgs e)
+        {
+            if (ConfigManager.GeneralConfig.Account != null)
+            {
+                WebAPI.BalancesAnswer resp = WebAPI.Balances(
+                        ConfigManager.GeneralConfig.Account.UID
+                    );
+                if (resp != null)
+                {
+                    
+                }
             }
         }
 

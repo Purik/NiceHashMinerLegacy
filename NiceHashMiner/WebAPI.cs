@@ -22,6 +22,27 @@ namespace NiceHashMiner
             public string worker_name { get; set; }
         }
 
+        public class BalancesAnswer
+        {
+
+            public class PredictionItem
+            {
+                public string btc { get; set; }
+                public string usd { get; set; }
+            }
+
+            public class Prediction
+            {
+                public PredictionItem day { get; set; }
+                public PredictionItem week { get; set; }
+                public PredictionItem month { get; set; }
+            }
+
+            public bool success { get; set; }
+            public string personal_volume { get; set; }
+            public Prediction prediction { get; set; }
+        }
+
         public static AccountAnswer Account(string username, string password)
         {
             var values = new Dictionary<string, string>
@@ -41,6 +62,24 @@ namespace NiceHashMiner
             }
         }
 
+        public static BalancesAnswer Balances(string uid)
+        {
+            var values = new Dictionary<string, string>
+            {
+               { "uid", uid },
+            };
+            var json = CustomRequest("balances", values);
+            if (json != null)
+            {
+                BalancesAnswer ret = JsonConvert.DeserializeObject<BalancesAnswer>(json);
+                return ret;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         private static string CustomRequest(string method, Dictionary<string, string> data)
         {
             var url = ConfigManager.GeneralConfig.ServerAddress + "/ajax/" + method;
@@ -55,13 +94,21 @@ namespace NiceHashMiner
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = content.Length;
-            using (var stream = request.GetRequestStream())
+            request.Timeout = 1000;
+            try
             {
-                stream.Write(content, 0, content.Length);
+                using (var stream = request.GetRequestStream())
+                {
+                    stream.Write(content, 0, content.Length);
+                }
+                var response = (HttpWebResponse)request.GetResponse();
+                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                return responseString;
             }
-            var response = (HttpWebResponse)request.GetResponse();
-            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            return responseString;
+            catch
+            {
+                return null;
+            }
         }
         
     }
