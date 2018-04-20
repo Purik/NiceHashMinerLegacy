@@ -132,7 +132,12 @@ namespace NiceHashMiner
                     );
                 if (resp != null)
                 {
-                    
+                    if (resp.success)
+                    {
+                        toolBalanceValue.Text = resp.value.personal_volume.usd + "$";
+                        var p = resp.value.prediction;
+                        toolPredictionValue.Text = p.day.usd + "$/День  " + p.week.usd + "$/Неделя  " + p.month.usd + "$/Месяц"; 
+                    }
                 }
             }
         }

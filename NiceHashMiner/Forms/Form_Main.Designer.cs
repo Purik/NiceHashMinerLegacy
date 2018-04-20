@@ -61,7 +61,11 @@
             this.labelAccount = new System.Windows.Forms.Label();
             this.linkAccount = new System.Windows.Forms.LinkLabel();
             this.buttonLogout = new System.Windows.Forms.Button();
+            this.toolBalance = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolBalanceValue = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolPrediction = new System.Windows.Forms.ToolStripStatusLabel();
             this.devicesListViewEnableControl1 = new NiceHashMiner.Forms.Components.DevicesListViewEnableControl();
+            this.toolPredictionValue = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -129,6 +133,10 @@
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolBalance,
+            this.toolBalanceValue,
+            this.toolPrediction,
+            this.toolPredictionValue,
             this.toolStripStatusLabelGlobalRateText,
             this.toolStripStatusLabelGlobalRateValue,
             this.toolStripStatusLabelBTCDayText,
@@ -139,9 +147,9 @@
             this.toolStripStatusLabelBalanceDollarText,
             this.toolStripStatusLabelBalanceDollarValue,
             this.toolStripStatusLabel10});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 237);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 240);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(554, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(555, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -150,6 +158,7 @@
             this.toolStripStatusLabelGlobalRateText.Name = "toolStripStatusLabelGlobalRateText";
             this.toolStripStatusLabelGlobalRateText.Size = new System.Drawing.Size(67, 20);
             this.toolStripStatusLabelGlobalRateText.Text = "Global rate:";
+            this.toolStripStatusLabelGlobalRateText.Visible = false;
             // 
             // toolStripStatusLabelGlobalRateValue
             // 
@@ -157,12 +166,14 @@
             this.toolStripStatusLabelGlobalRateValue.Name = "toolStripStatusLabelGlobalRateValue";
             this.toolStripStatusLabelGlobalRateValue.Size = new System.Drawing.Size(73, 20);
             this.toolStripStatusLabelGlobalRateValue.Text = "0.00000000";
+            this.toolStripStatusLabelGlobalRateValue.Visible = false;
             // 
             // toolStripStatusLabelBTCDayText
             // 
             this.toolStripStatusLabelBTCDayText.Name = "toolStripStatusLabelBTCDayText";
             this.toolStripStatusLabelBTCDayText.Size = new System.Drawing.Size(54, 20);
             this.toolStripStatusLabelBTCDayText.Text = "BTC/Day";
+            this.toolStripStatusLabelBTCDayText.Visible = false;
             // 
             // toolStripStatusLabelBTCDayValue
             // 
@@ -170,12 +181,14 @@
             this.toolStripStatusLabelBTCDayValue.Name = "toolStripStatusLabelBTCDayValue";
             this.toolStripStatusLabelBTCDayValue.Size = new System.Drawing.Size(31, 20);
             this.toolStripStatusLabelBTCDayValue.Text = "0.00";
+            this.toolStripStatusLabelBTCDayValue.Visible = false;
             // 
             // toolStripStatusLabelBalanceText
             // 
             this.toolStripStatusLabelBalanceText.Name = "toolStripStatusLabelBalanceText";
             this.toolStripStatusLabelBalanceText.Size = new System.Drawing.Size(97, 20);
             this.toolStripStatusLabelBalanceText.Text = "$/Day     Balance:";
+            this.toolStripStatusLabelBalanceText.Visible = false;
             // 
             // toolStripStatusLabelBalanceBTCValue
             // 
@@ -213,6 +226,7 @@
             this.toolStripStatusLabel10.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripStatusLabel10.Name = "toolStripStatusLabel10";
             this.toolStripStatusLabel10.Size = new System.Drawing.Size(35, 20);
+            this.toolStripStatusLabel10.Visible = false;
             this.toolStripStatusLabel10.Click += new System.EventHandler(this.ToolStripStatusLabel10_Click);
             this.toolStripStatusLabel10.MouseLeave += new System.EventHandler(this.ToolStripStatusLabel10_MouseLeave);
             this.toolStripStatusLabel10.MouseHover += new System.EventHandler(this.ToolStripStatusLabel10_MouseHover);
@@ -373,6 +387,25 @@
             this.buttonLogout.UseVisualStyleBackColor = true;
             this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
+            // toolBalance
+            // 
+            this.toolBalance.Name = "toolBalance";
+            this.toolBalance.Size = new System.Drawing.Size(49, 17);
+            this.toolBalance.Text = "Баланс:";
+            // 
+            // toolBalanceValue
+            // 
+            this.toolBalanceValue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolBalanceValue.Name = "toolBalanceValue";
+            this.toolBalanceValue.Size = new System.Drawing.Size(12, 17);
+            this.toolBalanceValue.Text = "-";
+            // 
+            // toolPrediction
+            // 
+            this.toolPrediction.Name = "toolPrediction";
+            this.toolPrediction.Size = new System.Drawing.Size(57, 17);
+            this.toolPrediction.Text = "Прогноз:";
+            // 
             // devicesListViewEnableControl1
             // 
             this.devicesListViewEnableControl1.BenchmarkCalculation = null;
@@ -386,11 +419,18 @@
             this.devicesListViewEnableControl1.Size = new System.Drawing.Size(545, 104);
             this.devicesListViewEnableControl1.TabIndex = 109;
             // 
+            // toolPredictionValue
+            // 
+            this.toolPredictionValue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolPredictionValue.Name = "toolPredictionValue";
+            this.toolPredictionValue.Size = new System.Drawing.Size(12, 17);
+            this.toolPredictionValue.Text = "-";
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(554, 262);
+            this.ClientSize = new System.Drawing.Size(555, 262);
             this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.linkAccount);
             this.Controls.Add(this.labelAccount);
@@ -464,6 +504,10 @@
         private System.Windows.Forms.Label labelAccount;
         private System.Windows.Forms.LinkLabel linkAccount;
         private System.Windows.Forms.Button buttonLogout;
+        private System.Windows.Forms.ToolStripStatusLabel toolBalance;
+        private System.Windows.Forms.ToolStripStatusLabel toolBalanceValue;
+        private System.Windows.Forms.ToolStripStatusLabel toolPrediction;
+        private System.Windows.Forms.ToolStripStatusLabel toolPredictionValue;
     }
 }
 

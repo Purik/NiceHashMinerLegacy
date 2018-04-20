@@ -25,7 +25,7 @@ namespace NiceHashMiner
         public class BalancesAnswer
         {
 
-            public class PredictionItem
+            public class BalanceItem
             {
                 public string btc { get; set; }
                 public string usd { get; set; }
@@ -33,14 +33,19 @@ namespace NiceHashMiner
 
             public class Prediction
             {
-                public PredictionItem day { get; set; }
-                public PredictionItem week { get; set; }
-                public PredictionItem month { get; set; }
+                public BalanceItem day { get; set; }
+                public BalanceItem week { get; set; }
+                public BalanceItem month { get; set; }
+            }
+
+            public class Value
+            {
+                public BalanceItem personal_volume { get; set; }
+                public Prediction prediction { get; set; }
             }
 
             public bool success { get; set; }
-            public string personal_volume { get; set; }
-            public Prediction prediction { get; set; }
+            public Value value { get; set; }
         }
 
         public static AccountAnswer Account(string username, string password)
