@@ -255,7 +255,7 @@ namespace NiceHashMiner
                 _driverUpdaterForm.Show();
             }
 
-            if (!ConfigManager.GeneralConfig.StartMiningWhenIdle || _isManuallyStarted) return;
+            //** MINE: if (!ConfigManager.GeneralConfig.StartMiningWhenIdle || _isManuallyStarted) return;
 
             var msIdle = Helpers.GetIdleTime();
             var _isBenchInit = IsBenchInit();
