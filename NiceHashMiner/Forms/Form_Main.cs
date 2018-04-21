@@ -290,6 +290,8 @@ namespace NiceHashMiner
                         if (!_benchmarkForm.IsInBenchmark())
                         {
                             _benchmarkRunningQuitely = true;
+                            _benchmarkForm.Opacity = 0.0;
+                            _benchmarkForm.Show();
                             _benchmarkForm.StartStopBtn_Click(null, null);
                         }
                     }
@@ -298,6 +300,7 @@ namespace NiceHashMiner
                     if (_benchmarkRunningQuitely && _benchmarkForm.IsInBenchmark()) {
                         _benchmarkRunningQuitely = false;
                         _benchmarkForm.StartStopBtn_Click(null, null);
+                        _benchmarkForm.Opacity = 1.0;
                     }
                 }
             }
