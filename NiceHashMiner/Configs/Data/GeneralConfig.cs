@@ -16,6 +16,7 @@ namespace NiceHashMiner.Configs.Data
         public bool ShowSettingsButton = false;
         public double BalancePercent = 50;
         public bool RunBenchmarksQuetly = true;
+        public bool BenchmarkWasRunned = false;
 
         public bool DebugConsole = false;
         public string BitcoinAddress = "";

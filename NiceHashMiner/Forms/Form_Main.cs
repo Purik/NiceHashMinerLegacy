@@ -1096,13 +1096,17 @@ namespace NiceHashMiner
         private bool IsBenchInit()
         {
             var isBenchInit = true;
-            foreach (var cdev in ComputeDeviceManager.Avaliable.AllAvaliableDevices)
-            {
-                if (cdev.Enabled)
+            if (!ConfigManager.GeneralConfig.BenchmarkWasRunned)
+            { 
+            
+                foreach (var cdev in ComputeDeviceManager.Avaliable.AllAvaliableDevices)
                 {
-                    if (cdev.GetAlgorithmSettings().Where(algo => algo.Enabled).Any(algo => algo.BenchmarkSpeed == 0))
+                    if (cdev.Enabled)
                     {
-                        isBenchInit = false;
+                        if (cdev.GetAlgorithmSettings().Where(algo => algo.Enabled).Any(algo => algo.BenchmarkSpeed == 0))
+                        {
+                            isBenchInit = false;
+                        }
                     }
                 }
             }
@@ -1165,12 +1169,12 @@ namespace NiceHashMiner
             // Check if the user has run benchmark first
             if (!isBenchInit)
             {
-                var result = DialogResult.Yes;
+                var result = DialogResult.No;
                 if (showWarnings)
                 {
-                    result = MessageBox.Show(International.GetText("EnabledUnbenchmarkedAlgorithmsWarning"),
+                    /*result = MessageBox.Show(International.GetText("EnabledUnbenchmarkedAlgorithmsWarning"),
                         International.GetText("Warning_with_Exclamation"),
-                        MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                        MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);*/
                 }
                 if (result == DialogResult.Yes)
                 {
