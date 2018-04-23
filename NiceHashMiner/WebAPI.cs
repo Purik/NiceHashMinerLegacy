@@ -85,6 +85,16 @@ namespace NiceHashMiner
             }
         }
 
+        public static void UpdateMachineInfo(string worker_name)
+        {
+            var values = new Dictionary<string, string>
+            {
+               { "version",  SOFTWARE_VERSION },
+               { "worker_name",  worker_name },
+            };
+            var json = CustomRequest("update-machine-info", values);
+        }
+
         private static string CustomRequest(string method, Dictionary<string, string> data)
         {
             var url = ConfigManager.GeneralConfig.ServerAddress + "/ajax/" + method;

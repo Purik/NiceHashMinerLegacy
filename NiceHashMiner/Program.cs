@@ -129,6 +129,10 @@ namespace NiceHashMiner
                 {
                     Application.Run(new Form_Authorization());
                 }
+                else
+                {
+                    WebAPI.UpdateMachineInfo(ConfigManager.GeneralConfig.WorkerName);
+                }
 
                 // check WMI
                 if (ConfigManager.GeneralConfig.Account != null)
