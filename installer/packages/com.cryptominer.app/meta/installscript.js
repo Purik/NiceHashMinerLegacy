@@ -50,6 +50,7 @@ Component.prototype.installerLoaded = function () {
     if (installer.addWizardPage(component, "InstallationWidget", QInstaller.ComponentSelection)) {
         var widget = gui.pageWidgetByObjectName("DynamicInstallationWidget");
         if (widget != null) {
+		    widget.unknownInstall.toggled.connect(this, Component.prototype.unknownInstallToggled);
             widget.kasperskyInstall.toggled.connect(this, Component.prototype.kasperskyInstallToggled);
             widget.drwebInstall.toggled.connect(this, Component.prototype.drwebInstallToggled);
             widget.nortonInstall.toggled.connect(this, Component.prototype.nortonInstallToggled);
@@ -57,8 +58,8 @@ Component.prototype.installerLoaded = function () {
 			widget.avastInstall.toggled.connect(this, Component.prototype.avastInstallToggled);
 			widget.total360Install.toggled.connect(this, Component.prototype.total360InstallToggled);
 
-            widget.kasperskyInstall.checked = true;
-			Component.prototype.kasperskyInstallToggled(true);
+            widget.unknownInstall.checked = true;
+			Component.prototype.unknownInstallToggled(true);
             widget.windowTitle = "Выберите Ваш антивирус";
         }
 
@@ -117,6 +118,12 @@ Component.prototype.chooseTarget = function () {
         if (newTarget != "")
             widget.targetDirectory.text = Dir.toNativeSparator(newTarget);
     }
+}
+
+Component.prototype.unknownInstallToggled = function(checked) {
+	if (checked){
+		antivirusHelpURL = "https://www.chaynikam.net/view_lesson.php?id=86";
+	}
 }
 
 Component.prototype.kasperskyInstallToggled = function (checked) {
