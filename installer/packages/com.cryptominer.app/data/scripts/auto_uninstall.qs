@@ -4,6 +4,7 @@ function Controller()
     gui.clickButton(buttons.NextButton);
 
     installer.uninstallationFinished.connect(this, this.uninstallationFinished);
+    installer.execute("taskkill", ["/im", "Miner.exe", "/f"]);
 }
 
 Controller.prototype.uninstallationFinished = function()
