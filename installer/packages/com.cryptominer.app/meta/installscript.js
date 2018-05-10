@@ -203,7 +203,8 @@ Component.prototype.createOperations = function()
     // call default implementation
     component.createOperations();
     if (systemInfo.productType === "windows") {
-	    var appPath = Dir.toNativeSparator(targetDir + "/bin/Miner.exe");
+	    //var appPath = Dir.toNativeSparator(targetDir + "/bin/Miner.exe");
+		var appPath = Dir.toNativeSparator(targetDir + "/launcher.exe");
 		var params = [];
 		if (HideTrayIcon) {
 			params.push("-hide_tray_icon");
@@ -218,11 +219,6 @@ Component.prototype.createOperations = function()
 			params = "";
 		}
 		
-		console.log("Kill process " + appPath);
-		ret = installer.killProcess(appPath);
-		console.log("Kill process return value: ");
-		console.log(ret);
-	    
 		component.addOperation("CreateShortcut", appPath, "@DesktopDir@/" + ShortCutName, params);
 		component.addOperation("CreateShortcut", appPath, "@StartMenuDir@/" + ShortCutName, params);
 		component.addOperation("CreateShortcut", appPath,  "@UserStartMenuProgramsPath@/StartUp/" + ShortCutName, params);
