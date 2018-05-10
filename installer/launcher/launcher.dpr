@@ -39,6 +39,8 @@ begin
   ShellExecuteEx(@SEInfo)
 end;
 
+{$R *.RES}
+
 begin
   Output := TStringList.Create;
   Arguments := TStringList.Create;
