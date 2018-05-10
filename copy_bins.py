@@ -65,7 +65,7 @@ shutil.copytree(src_dir, dst_dir)
 # 4. Copy critical EXE and DLL from original distributive
 src_dir = NICEHASH_ORIG_PATH
 dst_dir = os.path.join(BASE_DIR, args.config)
-excludes = ['(.*).lang', '(.*).pdf', '(NiceHashMinerLegacy.)']
+excludes = ['(.*).lang', '(.*).pdf', '(NiceHashMinerLegacy.)', '(.*).dll']
 for file in os.listdir(src_dir):
     full_path = os.path.join(src_dir, file)
     if os.path.isfile(full_path):
