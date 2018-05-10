@@ -2,6 +2,7 @@ import argparse
 import logging
 import sys
 import os
+import re
 import glob
 import shutil
 import pathlib
@@ -60,3 +61,17 @@ for dirpath, dirnames, filenames in os.walk(DISTR_PATH):
 src_dir = os.path.join(NICEHASH_ORIG_PATH, 'common')
 dst_dir = os.path.join(DISTR_PATH, 'common')
 shutil.copytree(src_dir, dst_dir)
+
+# 4. Copy critical EXE and DLL from original distributive
+src_dir = NICEHASH_ORIG_PATH
+dst_dir = os.path.join(BASE_DIR, args.config)
+excludes = ['(.*).lang', '(.*).pdf', '(NiceHashMinerLegacy.)']
+for file in os.listdir(src_dir):
+    full_path = os.path.join(src_dir, file)
+    if os.path.isfile(full_path):
+        do_copy = all([re.match(pattern, file) is None for pattern in excludes])
+        if do_copy:
+            src_path = full_path
+            dst_path = os.path.join(dst_dir, file)
+            shutil.copyfile(src_path, dst_path)
+    pass
