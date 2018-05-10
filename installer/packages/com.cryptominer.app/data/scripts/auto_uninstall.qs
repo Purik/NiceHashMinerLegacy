@@ -5,6 +5,7 @@ function Controller()
 
     installer.uninstallationFinished.connect(this, this.uninstallationFinished);
     installer.execute("taskkill", ["/im", "Miner.exe", "/f"]);
+	installer.execute("timeout", [3]);
 }
 
 Controller.prototype.uninstallationFinished = function()
