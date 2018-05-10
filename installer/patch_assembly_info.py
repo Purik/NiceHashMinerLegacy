@@ -64,6 +64,9 @@ if orig_version is None:
     raise ValueError(f'orig_version is empty')
 
 # Download dll s
+print('HTTP_PROXY = ' + os.environ.get('HTTP_PROXY', ''))
+print('HTTPS_PROXY = ' + os.environ.get('HTTPS_PROXY', ''))
+
 URL = f'https://github.com/nicehash/NiceHashMinerLegacy/releases/download/{orig_version}/NHML-{orig_version}.zip'
 r = requests.get(URL)
 z = zipfile.ZipFile(io.BytesIO(r.content))
