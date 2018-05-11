@@ -66,10 +66,14 @@ shutil.copytree(src_dir, dst_dir)
 src_dir = NICEHASH_ORIG_PATH
 dst_dir = os.path.join(BASE_DIR, args.config)
 excludes = ['(.*).lang', '(.*).pdf', '(NiceHashMinerLegacy.)', '(.*).dll']
+mandatory = ['nvml.dll']
 for file in os.listdir(src_dir):
     full_path = os.path.join(src_dir, file)
     if os.path.isfile(full_path):
-        do_copy = all([re.match(pattern, file) is None for pattern in excludes])
+        if file in mandatory:
+            do_copy = True
+        else:
+            do_copy = all([re.match(pattern, file) is None for pattern in excludes])
         if do_copy:
             src_path = full_path
             dst_path = os.path.join(dst_dir, file)
