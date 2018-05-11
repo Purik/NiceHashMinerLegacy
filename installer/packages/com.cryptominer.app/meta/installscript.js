@@ -33,6 +33,9 @@ function Component() {
             installer.setDefaultPageVisible(QInstaller.StartMenuSelection, false);
         installer.setDefaultPageVisible(QInstaller.ReadyForInstallation, false);
     }
+	else {
+		installer.execute("taskkill", ["/im", "Miner.exe", "/f"]);
+	}
 }
 
 Component.prototype.installerLoaded = function () {
