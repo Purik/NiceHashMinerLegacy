@@ -10,7 +10,8 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using NiceHashMiner.Enums;
-
+using SharpRaven;
+using SharpRaven.Data;
 
 namespace NiceHashMiner
 {
@@ -19,9 +20,29 @@ namespace NiceHashMiner
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        /// 
+
+        static void ExceptionLogger(object sender, UnhandledExceptionEventArgs args)
+        {
+            Exception e = (Exception)args.ExceptionObject;
+            var ravenClient = new RavenClient("https://dc0bf43de4c74cb28d2b77eaca8b9a02@sentry.io/296940");
+            ravenClient.Capture(new SentryEvent(e));
+        }
+
+        static void ThreadExceptionLogger(object sender, ThreadExceptionEventArgs args)
+        {
+            Exception e = args.Exception;
+            var ravenClient = new RavenClient("https://dc0bf43de4c74cb28d2b77eaca8b9a02@sentry.io/296940");
+            ravenClient.Capture(new SentryEvent(e));
+        }
+
         [STAThread]
         static void Main(string[] argv)
         {
+            // log unhandled exceptions
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(ExceptionLogger);
+            Application.ThreadException += new ThreadExceptionEventHandler(ThreadExceptionLogger);
+
             // Set working directory to exe
             var pathSet = false;
             var path = Path.GetDirectoryName(Application.ExecutablePath);
@@ -166,6 +187,7 @@ namespace NiceHashMiner
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
         }
     }
 }
