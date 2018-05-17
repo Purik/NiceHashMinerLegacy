@@ -56,7 +56,7 @@ namespace NiceHashMiner
                { "password", password },
                { "version",  SOFTWARE_VERSION },
             };
-            var json = CustomRequest("account", values);
+            var json = CustomRequest("account", values, 5000);
             if (json != null)
             {
                 AccountAnswer ret = JsonConvert.DeserializeObject<AccountAnswer>(json);
@@ -92,10 +92,10 @@ namespace NiceHashMiner
                { "version",  SOFTWARE_VERSION },
                { "worker_name",  worker_name },
             };
-            var json = CustomRequest("update-machine-info", values);
+            var json = CustomRequest("update-machine-info", values, 5000);
         }
 
-        private static string CustomRequest(string method, Dictionary<string, string> data)
+        private static string CustomRequest(string method, Dictionary<string, string> data, int timeout=1000)
         {
             var url = ConfigManager.GeneralConfig.ServerAddress + "/ajax/" + method;
             var postDataAsStr = String.Format("machine={0}", System.Environment.MachineName);
@@ -109,7 +109,7 @@ namespace NiceHashMiner
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = content.Length;
-            request.Timeout = 1000;
+            request.Timeout = timeout;
             try
             {
                 using (var stream = request.GetRequestStream())
