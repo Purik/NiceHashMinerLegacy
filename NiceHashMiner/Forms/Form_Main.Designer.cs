@@ -35,6 +35,10 @@
             this.comboBoxLocation = new System.Windows.Forms.ComboBox();
             this.labelBitcoinAddress = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolBalance = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolBalanceValue = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolPrediction = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolPredictionValue = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelGlobalRateText = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelGlobalRateValue = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelBTCDayText = new System.Windows.Forms.ToolStripStatusLabel();
@@ -61,11 +65,7 @@
             this.labelAccount = new System.Windows.Forms.Label();
             this.linkAccount = new System.Windows.Forms.LinkLabel();
             this.buttonLogout = new System.Windows.Forms.Button();
-            this.toolBalance = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolBalanceValue = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolPrediction = new System.Windows.Forms.ToolStripStatusLabel();
             this.devicesListViewEnableControl1 = new NiceHashMiner.Forms.Components.DevicesListViewEnableControl();
-            this.toolPredictionValue = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -80,6 +80,7 @@
             this.buttonStartMining.TabIndex = 6;
             this.buttonStartMining.Text = "&Start";
             this.buttonStartMining.UseVisualStyleBackColor = false;
+            this.buttonStartMining.Visible = false;
             this.buttonStartMining.Click += new System.EventHandler(this.ButtonStartMining_Click);
             // 
             // textBoxBTCAddress
@@ -152,6 +153,32 @@
             this.statusStrip1.Size = new System.Drawing.Size(555, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolBalance
+            // 
+            this.toolBalance.Name = "toolBalance";
+            this.toolBalance.Size = new System.Drawing.Size(49, 17);
+            this.toolBalance.Text = "Баланс:";
+            // 
+            // toolBalanceValue
+            // 
+            this.toolBalanceValue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolBalanceValue.Name = "toolBalanceValue";
+            this.toolBalanceValue.Size = new System.Drawing.Size(12, 17);
+            this.toolBalanceValue.Text = "-";
+            // 
+            // toolPrediction
+            // 
+            this.toolPrediction.Name = "toolPrediction";
+            this.toolPrediction.Size = new System.Drawing.Size(57, 17);
+            this.toolPrediction.Text = "Прогноз:";
+            // 
+            // toolPredictionValue
+            // 
+            this.toolPredictionValue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolPredictionValue.Name = "toolPredictionValue";
+            this.toolPredictionValue.Size = new System.Drawing.Size(12, 17);
+            this.toolPredictionValue.Text = "-";
             // 
             // toolStripStatusLabelGlobalRateText
             // 
@@ -272,6 +299,7 @@
             this.buttonStopMining.TabIndex = 7;
             this.buttonStopMining.Text = "St&op";
             this.buttonStopMining.UseVisualStyleBackColor = true;
+            this.buttonStopMining.Visible = false;
             this.buttonStopMining.Click += new System.EventHandler(this.ButtonStopMining_Click);
             // 
             // buttonBenchmark
@@ -387,25 +415,6 @@
             this.buttonLogout.UseVisualStyleBackColor = true;
             this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
-            // toolBalance
-            // 
-            this.toolBalance.Name = "toolBalance";
-            this.toolBalance.Size = new System.Drawing.Size(49, 17);
-            this.toolBalance.Text = "Баланс:";
-            // 
-            // toolBalanceValue
-            // 
-            this.toolBalanceValue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.toolBalanceValue.Name = "toolBalanceValue";
-            this.toolBalanceValue.Size = new System.Drawing.Size(12, 17);
-            this.toolBalanceValue.Text = "-";
-            // 
-            // toolPrediction
-            // 
-            this.toolPrediction.Name = "toolPrediction";
-            this.toolPrediction.Size = new System.Drawing.Size(57, 17);
-            this.toolPrediction.Text = "Прогноз:";
-            // 
             // devicesListViewEnableControl1
             // 
             this.devicesListViewEnableControl1.BenchmarkCalculation = null;
@@ -418,13 +427,6 @@
             this.devicesListViewEnableControl1.SaveToGeneralConfig = false;
             this.devicesListViewEnableControl1.Size = new System.Drawing.Size(545, 104);
             this.devicesListViewEnableControl1.TabIndex = 109;
-            // 
-            // toolPredictionValue
-            // 
-            this.toolPredictionValue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.toolPredictionValue.Name = "toolPredictionValue";
-            this.toolPredictionValue.Size = new System.Drawing.Size(12, 17);
-            this.toolPredictionValue.Text = "-";
             // 
             // Form_Main
             // 
