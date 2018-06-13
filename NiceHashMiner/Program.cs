@@ -25,14 +25,14 @@ namespace NiceHashMiner
         static void ExceptionLogger(object sender, UnhandledExceptionEventArgs args)
         {
             Exception e = (Exception)args.ExceptionObject;
-            var ravenClient = new RavenClient("https://dc0bf43de4c74cb28d2b77eaca8b9a02@sentry.io/296940");
+            var ravenClient = new RavenClient("https://8470ed41b73f4cd180852685a415551a@sentry.io/1225545");
             ravenClient.Capture(new SentryEvent(e));
         }
 
         static void ThreadExceptionLogger(object sender, ThreadExceptionEventArgs args)
         {
             Exception e = args.Exception;
-            var ravenClient = new RavenClient("https://dc0bf43de4c74cb28d2b77eaca8b9a02@sentry.io/296940");
+            var ravenClient = new RavenClient("https://8470ed41b73f4cd180852685a415551a@sentry.io/1225545");
             ravenClient.Capture(new SentryEvent(e));
         }
 
