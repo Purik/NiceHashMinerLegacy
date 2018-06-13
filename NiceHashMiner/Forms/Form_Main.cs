@@ -250,7 +250,7 @@ namespace NiceHashMiner
         private void IdleCheck_Tick(object sender, EventArgs e)
         {
 
-            if (ComputeDeviceManager.Avaliable.AvailCpus == 0 || ComputeDeviceManager.Avaliable.AvailGpUs == 0 || ConfigManager.TestDriverUpdateForm)
+            if ((ComputeDeviceManager.Avaliable.AvailCpus == 0 && ComputeDeviceManager.Avaliable.AvailGpUs == 0) || ConfigManager.TestDriverUpdateForm)
             {
                 _driverUpdaterForm.Show();
             }
